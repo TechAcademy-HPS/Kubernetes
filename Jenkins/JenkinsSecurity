@@ -13,8 +13,16 @@ pipeline {
 		    sh "mvn clean package"
 	              }
         } 
+	
+	stage('Build'){
+             steps{
+	            sh "wget https://raw.githubusercontent.com/TechAcademy-HPS/JavaTest/master/owasp-dependency-check.sh "
+		    sh "chmod +x owasp-dependency-check.sh"
+		    sh "bash owasp-dependency-check.sh"
+	              }
+        } 
 	   
-	 stage('sonar') {
+	/*  stage('sonar') {
             steps {
 		    script {
                        withSonarQubeEnv('SonarQubeSrvr') {
@@ -50,7 +58,7 @@ pipeline {
                   }
               }
           }
-	  /*   stage('Deploy'){
+	    stage('Deploy'){
              steps{
 		    sshagent(['tomcat']) {
                    sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/Demo/target/*.war ec2-user@3.112.241.39:/opt/tomcat9/webapps/" 
