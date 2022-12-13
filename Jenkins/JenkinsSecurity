@@ -14,7 +14,7 @@ pipeline {
 	              }
         } 
 	
-	stage('Build'){
+	stage('Dependency Check'){
              steps{
 	            sh "wget https://raw.githubusercontent.com/TechAcademy-HPS/JavaTest/master/owasp-dependency-check.sh "
 		    sh "chmod +x owasp-dependency-check.sh"
