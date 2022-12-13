@@ -21,9 +21,9 @@ docker pull owasp/dependency-check:$DC_VERSION
 docker run --rm \
     -e user=$USER \
     -u $(id -u ${USER}):$(id -g ${USER}) \
-    --volume $(pwd)/workspace/deploy@2:/src:z \
+    --volume {env.WORKSPACE}:/src:z \
     --volume "$DATA_DIRECTORY":/usr/share/dependency-check/data:z \
-    --volume $(pwd)/workspace/deploy@2/odc-reports:/report:z \
+    --volume {env.WORKSPACE}/odc-reports:/report:z \
     owasp/dependency-check:$DC_VERSION \
     --scan /src \
     --format "ALL" \
