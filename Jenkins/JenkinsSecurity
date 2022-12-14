@@ -13,7 +13,7 @@ pipeline {
 		    sh "mvn clean package"
 		    dependencyCheck additionalArguments: '', odcInstallation: 'dependency check'
 		    dependencyCheckPublisher pattern: ''
-		    grypeScan scanDest: 'dir:/tmp', repName: 'myScanResult.txt'
+		    grypeScan autoInstall: false, repName: 'grypeReport_${JOB_NAME}_${BUILD_NUMBER}.txt', scanDest: 'dir:./tmp'
 	              }
 	      
           } 
