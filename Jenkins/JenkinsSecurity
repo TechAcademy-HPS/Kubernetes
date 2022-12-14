@@ -12,6 +12,11 @@ pipeline {
              steps{
 		    sh "mvn clean package"
 	              }
+	      post{
+               always{
+                  junit '/var/lib/jenkins/workspace/deploy/odc-reports'
+                  }
+               }
         } 
 	
 	  /*stage('Dependency Check'){
@@ -82,11 +87,7 @@ pipeline {
              }
             }
         }*/
-         post{
-               always{
-                  junit '/var/lib/jenkins/workspace/deploy/odc-reports'
-                  }
-               }
+        
      }
 
 }
