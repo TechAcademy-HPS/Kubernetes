@@ -13,6 +13,7 @@ pipeline {
 		    sh "mvn clean package"
 		    dependencyCheck additionalArguments: '', odcInstallation: 'dependency check'
 		    dependencyCheckPublisher pattern: ''
+		     sh "docker build -t yoshithadocker/mydockerrepo:${buildno} ." 
 		    grypeScan autoInstall: false, repName: 'grypeReport_${JOB_NAME}_${BUILD_NUMBER}.txt', scanDest: 'dir:./tmp'
 	              }
 	      
