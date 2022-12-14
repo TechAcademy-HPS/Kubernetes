@@ -8,13 +8,13 @@ pipeline {
 	
     stages {
       	
-       /*  stage('Build'){
+       stage('Build'){
              steps{
 		    sh "mvn clean package"
 	              }
         } 
 	
-	stage('Dependency Check'){
+	  /*stage('Dependency Check'){
              steps{
 	            sh "wget https://raw.githubusercontent.com/TechAcademy-HPS/JavaTest/master/owasp-dependency-check.sh "
 		    sh "chmod +x owasp-dependency-check.sh"
