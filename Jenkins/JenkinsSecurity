@@ -82,7 +82,11 @@ pipeline {
              }
             }
         }*/
-
+         post{
+               always{
+                  junit '/var/lib/jenkins/workspace/deploy/odc-reports'
+                  }
+               }
      }
 
 }
