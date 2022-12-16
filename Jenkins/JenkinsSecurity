@@ -11,20 +11,9 @@ pipeline {
        stage('Build'){
              steps{
 		    sh "mvn clean package"
-		     dependencyCheck additionalArguments: '', odcInstallation: 'dependency check'
-		     dependencyCheckPublisher pattern: ''
-		    grypeScan autoInstall: false, repName: 'grypeReport_${JOB_NAME}_${BUILD_NUMBER}.txt', scanDest: 'dir:/var/lib/jenkins/workspace/deploy'
 	              }
 	      
           } 
-	
-	  /*stage('Dependency Check'){
-             steps{
-	            sh "wget https://raw.githubusercontent.com/TechAcademy-HPS/JavaTest/master/owasp-dependency-check.sh "
-		    sh "chmod +x owasp-dependency-check.sh"
-		    sh "bash owasp-dependency-check.sh"
-	              }
-        } 
 	   
 	  stage('sonar') {
             steps {
@@ -41,6 +30,13 @@ pipeline {
                  }
 	      }
            }
+		   
+	 stage('Dependency Check'){
+             steps{
+			     dependencyCheck additionalArguments: '', odcInstallation: 'dependency check'
+		         dependencyCheckPublisher pattern: ''
+	              }
+        } 
 	
 	stage('Building image') {
             steps{
@@ -52,15 +48,15 @@ pipeline {
 	      
 	stage('scan'){
              steps{
-		    sh "grype yoshithadocker/mydockerrepo:${buildno}"
+		    //sh "grype yoshithadocker/mydockerrepo:${buildno}"
+			grypeScan autoInstall: false, repName: 'grypeReport_${JOB_NAME}_${BUILD_NUMBER}.txt', scanDest: 'dir:/var/lib/jenkins/workspace/deploy'
               }
-        } */
+        } 
 	
-	/*stage('push to repo') {
+	stage('push to repo') {
             steps{
                 script {
-			  withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerpassword', usernameVariable: 'dockeruser')]) {
-                                        
+			  withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerpassword', usernameVariable: 'dockeruser')]) {                        
 					sh 'docker login -u yoshithadocker -p ${dockerpassword}'
 			                sh "docker push yoshithadocker/mydockerrepo:${buildno}"
                      }
@@ -70,23 +66,11 @@ pipeline {
 	  stage('Deploy'){
              steps{
 		    sshagent(['tomcat']) {
-                   sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/Demo/target/*.war ec2-user@3.112.241.39:/opt/tomcat9/webapps/" 
+                   sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/Demo/target/*.war ec2-user@54.178.117.30:/opt/tomcat9/webapps/" 
                   }
               }
         } 
 	  
-	 
-        stage('K8S Deploy') {
-             steps{   
-              script {
-                 
-		      kubeconfig(credentialsId: 'kubeconfig', serverUrl: 'https://394B0D2B64F459D83B8A7C980116DC28.gr7.us-east-2.eks.amazonaws.com') {
-                                 sh ('kubectl apply -f  eks-deploy-k8s.yaml')
-                             }
-             }
-            }
-        }*/
-        
      }
 
 }
