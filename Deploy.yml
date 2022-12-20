@@ -2,5 +2,5 @@
   tasks:
     - name: Test connection
       copy:
-        src: target/maven-web-application.war
-        dest: /opt/apache-tomcat-9.0.65/webapps/maven-web-application.war
+        src: /var/lib/jenkins/workspace/Demo/target/*.war
+        dest: /opt/apache-tomcat-9.0.65/webapps/demo-2.0.0-SNAPSHOT.war
