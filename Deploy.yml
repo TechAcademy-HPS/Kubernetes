@@ -4,7 +4,9 @@
       copy:
         src: /var/lib/jenkins/workspace/deploy/target/demo-2.0.0-SNAPSHOT.war
         dest: /opt/tomcat9/webapps/demo-2.0.0-SNAPSHOT.war
-        
-    - name: Restart
+        notify: Restart Tomcat
+    
+    handlers:
+    - name: Restart Tomcat
       shell: /opt/tomcat9/bin/shutdown.sh && nohup /opt/tomcat9/bin/startup.sh
         
