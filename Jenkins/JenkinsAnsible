@@ -17,7 +17,7 @@ pipeline {
 	   
 	  stage('Deploy'){
              steps{
-		    ansiblePlaybook installation: 'ansible', inventory: 'dev.inv', playbook: 'Deploy.yml'
+		    ansiblePlaybook credentialsId: 'tomcat credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: 'dev.inv', playbook: 'Deploy.yml'
               }
         }
 	  
