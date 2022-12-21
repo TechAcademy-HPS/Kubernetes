@@ -3,4 +3,4 @@
     - name: Test connection
       copy:
         src: /var/lib/jenkins/workspace/deploy/target/demo-2.0.0-SNAPSHOT.war
-        dest: /opt/apache-tomcat-9.0.65/webapps/demo-2.0.0-SNAPSHOT.war
+        dest: /opt/tomcat9/webapps/demo-2.0.0-SNAPSHOT.war
