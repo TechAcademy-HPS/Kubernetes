@@ -4,7 +4,7 @@
       copy:
         src: target/demo-2.0.0-SNAPSHOT.war
         dest: /opt/tomcat9/webapps/
-        notify: Restart Tomcat
+      notify: Restart Tomcat
     
   handlers:
     - name: Restart Tomcat
