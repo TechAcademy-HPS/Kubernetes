@@ -6,7 +6,6 @@
         dest: /opt/tomcat9/webapps/demo-2.0.0-SNAPSHOT.war
         notify: Restart Tomcat
     
-    handlers:
+  handlers:
     - name: Restart Tomcat
       shell: /opt/tomcat9/bin/shutdown.sh && nohup /opt/tomcat9/bin/startup.sh
-        
