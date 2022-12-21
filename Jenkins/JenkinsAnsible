@@ -13,7 +13,7 @@ pipeline {
 		    sh "mvn clean package"
 	              }
           } 
-	stage('Dependency Check'){
+	/*stage('Dependency Check'){
              steps{
 			     dependencyCheck additionalArguments: '', odcInstallation: 'dependency check'
 		         dependencyCheckPublisher pattern: ''
@@ -44,7 +44,7 @@ pipeline {
                      }
                   }
               }
-          }
+          }*/
 	   
 	  stage('Deploy'){
              steps{
