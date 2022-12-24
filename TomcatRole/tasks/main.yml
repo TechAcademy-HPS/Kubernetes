@@ -1,6 +1,6 @@
 ---
 # tasks file for TomcatRole
 - name: Test connection
-      copy:
-        src: target/demo-2.0.0-SNAPSHOT.war
-        dest: /opt/tomcat9/webapps/
+  copy:
+    src: target/demo-2.0.0-SNAPSHOT.war
+    dest: /opt/tomcat9/webapps/
