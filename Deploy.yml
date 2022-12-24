@@ -1,11 +1,4 @@
 - hosts: all
-  tasks:
-    - name: Test connection
-      copy:
-        src: target/demo-2.0.0-SNAPSHOT.war
-        dest: /opt/tomcat9/webapps/
-      notify: Restart Tomcat
-    
-  handlers:
-    - name: Restart Tomcat
-      shell: /opt/tomcat9/bin/shutdown.sh && nohup /opt/tomcat9/bin/startup.sh
+  become: true
+  roles:
+   -TomcatRole
