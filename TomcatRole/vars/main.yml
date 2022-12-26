@@ -1,4 +1,4 @@
 ---
 # vars file for TomcatRole
-mywarfile: target/demo-2.0.0-SNAPSHOT.war
+
 
