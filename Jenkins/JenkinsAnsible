@@ -13,7 +13,7 @@ pipeline {
 		    sh "mvn clean package"
 	              }
           } 
-	/*stage('Dependency Check'){
+	stage('Dependency Check'){
              steps{
 			     dependencyCheck additionalArguments: '', odcInstallation: 'dependency check'
 		         dependencyCheckPublisher pattern: ''
@@ -44,14 +44,10 @@ pipeline {
                      }
                   }
               }
-          }*/
+          }
 	   
 	  stage('Deploy'){
              steps{
-	            
-		   // ansiblePlaybook credentialsId: 'tomcat credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.inv', playbook: 'Deploy.yml'
-		 
-		     
 		   ansiblePlaybook credentialsId: 'tomcat credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.inv', playbook: 'Deploy.yml', vaultCredentialsId: 'vault credentials'
               }
         }
