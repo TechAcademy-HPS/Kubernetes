@@ -48,9 +48,11 @@ pipeline {
 	   
 	  stage('Deploy'){
              steps{
-	            sh 'echo ${vaultdecryptpass} >> vaultdecryptpass.txt
-		    ansiblePlaybook credentialsId: 'tomcat credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.inv', playbook: 'Deploy.yml'
-		     sh 'rm vaultdecryptpass.txt'   
+	            
+		   // ansiblePlaybook credentialsId: 'tomcat credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.inv', playbook: 'Deploy.yml'
+		 
+		     
+		   ansiblePlaybook credentialsId: 'tomcat credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.inv', playbook: 'Deploy.yml', vaultCredentialsId: 'vault credentials'
               }
         }
 	  
