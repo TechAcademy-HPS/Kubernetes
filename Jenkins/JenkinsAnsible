@@ -14,7 +14,7 @@ pipeline {
 	              }
           } 
 	  
-	stage('sonar') {
+	/*stage('sonar') {
             steps {
 		    script {
                        withSonarQubeEnv('SonarQubeSrvr') {
@@ -61,7 +61,7 @@ pipeline {
                      }
                   }
               }
-          }
+          }*/
 	   
 	  stage('Deploy'){
              steps{
