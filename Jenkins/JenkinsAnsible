@@ -28,7 +28,7 @@ pipeline {
                     }
                  }
 	      }
-           }
+           }*/
 	   
 	stage('Dependency Check'){
              steps{
@@ -37,7 +37,7 @@ pipeline {
 	              }
         } 
 	
-	stage('Building image') {
+	/*stage('Building image') {
             steps{
                 script {
 			  sh "docker build -t yoshithadocker/mydockerrepo:${buildno} ." 
@@ -67,7 +67,7 @@ pipeline {
              steps{
 		   ansiblePlaybook credentialsId: 'tomcat credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.inv', playbook: 'Deploy.yml', vaultCredentialsId: 'vault credentials'
               }
-        }
+        }*/
 	  
      }
 
