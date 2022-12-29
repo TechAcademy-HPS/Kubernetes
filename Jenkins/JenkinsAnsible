@@ -14,21 +14,7 @@ pipeline {
 	              }
           } 
 	  
-	/*stage('sonar') {
-            steps {
-		    script {
-                       withSonarQubeEnv('SonarQubeSrvr') {
-                       sh "mvn sonar:sonar"
-                      }
-		      timeout(time: 1, unit: 'HOURS') {
-                      def qg = waitForQualityGate()
-                      if (qg.status != 'OK') {
-                           error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                      }
-                    }
-                 }
-	      }
-           }*/
+	
 	   
 	stage('Dependency Check'){
              steps{
@@ -37,37 +23,9 @@ pipeline {
 	              }
         } 
 	
-	/*stage('Building image') {
-            steps{
-                script {
-			  sh "docker build -t yoshithadocker/mydockerrepo:${buildno} ." 
-                     }
-                  }
-              }
-	      
-	stage('scan'){
-             steps{
-		    //sh "grype yoshithadocker/mydockerrepo:${buildno}"
-			grypeScan autoInstall: false, repName: 'grypeReport_${JOB_NAME}_${BUILD_NUMBER}.txt', scanDest: 'dir:/var/lib/jenkins/workspace/deploy'
-              }
-        } 
 	
-	stage('push to repo') {
-            steps{
-                script {
-			  withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerpassword', usernameVariable: 'dockeruser')]) {                        
-					sh 'docker login -u yoshithadocker -p ${dockerpassword}'
-			                sh "docker push yoshithadocker/mydockerrepo:${buildno}"
-                     }
-                  }
-              }
-          }*/
-	   
-	  stage('Deploy'){
-             steps{
-		   ansiblePlaybook credentialsId: 'tomcat credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.inv', playbook: 'Deploy.yml', vaultCredentialsId: 'vault credentials'
-              }
-        }*/
+	      
+	
 	  
      }
 
