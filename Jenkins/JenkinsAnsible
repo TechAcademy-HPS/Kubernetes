@@ -57,7 +57,7 @@ pipeline {
 		
 	  stage('Deploy'){
             steps{
-		   ansiblePlaybook credentialsId: 'tomcat credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: 'aws_ec2.yml', playbook: 'Deploy.yml', vaultCredentialsId: 'vault credentials'
+		   ansiblePlaybook  installation: 'ansible', inventory: 'aws_ec2.yaml', playbook: 'Deploy.yml', vaultCredentialsId: 'vault credentials'
               }
         }
 	  
