@@ -1,13 +1,13 @@
 ---
 - name: Nexus Artifact deploy
   maven_artifact:
-    group_id: pl.codeleak.demos.sbt
-    artifact_id: spring-boot-thymeleaf
+    group_id: com.domain
+    artifact_id: demo
     extension: war
-    version: 2.0.0
+    version: 2.0.0-SNAPSHOT
     repository_url: "{{ deploy_url }}"
     username: admin
-    password: admin
+    password: admin123
     dest: "{{ tmp_repo }}"
     mode: '0755'
 - name: remove artifact file in latest tomcat
