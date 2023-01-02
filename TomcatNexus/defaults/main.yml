@@ -1,5 +1,8 @@
 ---
 # defaults file for TomcatNexus
+tomcat_latest: /opt/tomcat/latest
+
+
 # defaults for tomat application
 deploy_version: 2.0.0-SNAPSHOT
 deploy_file_name: demo-{{ deploy_version }}.war
