@@ -74,11 +74,11 @@ pipeline {
 				version: '2.0.0-SNAPSHOT'
             }
         }
-	  stage('Deploy'){
+	  /*stage('Deploy'){
             steps{
 		   ansiblePlaybook  installation: 'ansible', inventory: 'aws_ec2.yaml', playbook: 'Deploy.yml', vaultCredentialsId: 'vault credentials'
               }
-        }
+        }*/
 	  
      }
 
