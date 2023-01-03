@@ -6,5 +6,5 @@ tomcat_latest: /opt/tomcat9
 # defaults for tomat application
 deploy_version: 2.0.0-SNAPSHOT
 deploy_file_name: demo-{{ deploy_version }}.war
-deploy_url: http://52.68.73.151:8081/repository/demo/
+deploy_url: http://18.183.190.3:8081/repository/demo/
 tmp_repo: /tmp/{{ deploy_file_name }}
