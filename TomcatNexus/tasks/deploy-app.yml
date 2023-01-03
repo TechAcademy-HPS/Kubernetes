@@ -3,8 +3,9 @@
   file:
     path: "{{ tmp_repo }}"
     state: absent
- - name: install pip3
-  apt: name=python3-pip state=present
+- name: install pip3
+    apt: name=python3-pip 
+    state=present
 - name: Install lxml
   pip: name=lxml
 - name: Nexus Artifact deploy
