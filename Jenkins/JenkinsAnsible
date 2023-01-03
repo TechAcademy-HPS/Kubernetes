@@ -47,15 +47,9 @@ pipeline {
                      }
                   }
               }
-          }
-	   
-	  stage('Deploy'){
-             steps{
-		   ansiblePlaybook credentialsId: 'tomcat credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.inv', playbook: 'Deploy.yml', vaultCredentialsId: 'vault credentials'
-              }
-        }*/
-	
-	stage('upload to nexus') {
+          }*/
+	 
+	 stage('upload to nexus') {
             steps {
                 nexusArtifactUploader artifacts: [
 				[
@@ -67,13 +61,20 @@ pipeline {
 				],
 				credentialsId: 'nexus credentials',
 				groupId: 'com.domain',
-				nexusUrl: '43.206.121.255:8081',
+				nexusUrl: '18.183.190.3:8081',
 				nexusVersion: 'nexus3',
 				protocol: 'http',
 				repository: 'demo',
 				version: '2.0.0-SNAPSHOT'
             }
         }
+	
+	  stage('Deploy'){
+             steps{
+		   ansiblePlaybook credentialsId: 'tomcat credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.inv', playbook: 'Deploy.yml'
+        }
+	
+	
 	  /*stage('Deploy'){
             steps{
 		   ansiblePlaybook  installation: 'ansible', inventory: 'aws_ec2.yaml', playbook: 'Deploy.yml', vaultCredentialsId: 'vault credentials'
