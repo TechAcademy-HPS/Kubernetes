@@ -1,6 +1,6 @@
 ---
 # defaults file for TomcatNexus
-tomcat_latest: /opt/tomcat/latest
+tomcat_latest: /opt/tomcat9
 
 
 # defaults for tomat application
