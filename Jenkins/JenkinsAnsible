@@ -53,7 +53,7 @@ pipeline {
             steps {
                 nexusArtifactUploader artifacts: [
 				[
-				artifactId: 'demo-2.0.0-SNAPSHOT',
+				artifactId: 'demo',
 				classifier: '',
 				file: 'target/demo-2.0.0-SNAPSHOT.war',
 				type: 'war'
