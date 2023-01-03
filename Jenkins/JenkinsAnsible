@@ -71,14 +71,14 @@ pipeline {
 	
 	  stage('Deploy'){
              steps{
-		   ansiblePlaybook  installation: 'ansible', inventory: 'hosts.inv', playbook: 'Deploy.yml'
+		   ansiblePlaybook credentialsId: 'tomcatubuntu', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.inv', playbook: 'Deploy.yml'
           }
        }
 	
 	
 	  /*stage('Deploy'){
             steps{
-		   ansiblePlaybook  installation: 'ansible', inventory: 'aws_ec2.yaml', playbook: 'Deploy.yml', vaultCredentialsId: 'vault credentials'
+		   ansiblePlaybook credentialsId: 'tomcatubuntu', disableHostKeyChecking: true, installation: 'ansible', inventory: 'aws_ec2.yaml', playbook: 'Deploy.yml', vaultCredentialsId: 'vault credentials'
               }
         }*/
 	  
