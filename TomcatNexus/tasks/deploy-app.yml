@@ -10,9 +10,9 @@
 - name: Nexus Artifact deploy
   maven_artifact:
     group_id: com.domain
-    artifact_id: demo
+    artifact_id: demo-2.0.0-SNAPSHOT
     extension: war
-    version: 2.0.0-SNAPSHOT
+    version: 2.0.0
     repository_url: "{{ deploy_url }}"
     username: admin
     password: admin123
