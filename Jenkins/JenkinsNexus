@@ -13,6 +13,7 @@ pipeline {
 		    sh "mvn clean package"
 	              }
           } 
+	  
 	 stage('sonar') {
             steps {
 		    script {
@@ -28,6 +29,14 @@ pipeline {
                  }
 	      }
            }
+	   
+	 stage('Dependency Check'){
+             steps{
+			     dependencyCheck additionalArguments: '', odcInstallation: 'dependency check'
+		         dependencyCheckPublisher pattern: ''
+	              }
+        } 
+	
 	 stage('upload to nexus') {
             steps {
                 nexusArtifactUploader artifacts: [
