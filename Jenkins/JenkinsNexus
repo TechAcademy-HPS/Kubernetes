@@ -1,0 +1,44 @@
+def buildno = BUILD_NUMBER
+pipeline {
+    agent any
+    
+    tools {
+        maven "maven3.6.3"
+    }
+	
+    stages {
+      	
+       stage('Build'){
+             steps{
+		    sh "mvn clean package"
+	              }
+          } 
+	 stage('upload to nexus') {
+            steps {
+                nexusArtifactUploader artifacts: [
+				[
+				artifactId: 'demo',
+				classifier: '',
+				file: 'target/demo-2.0.0-SNAPSHOT.war',
+				type: 'war'
+				]
+				],
+				credentialsId: 'nexus credentials',
+				groupId: 'com.domain',
+				nexusUrl: '52.194.244.68:8081',
+				nexusVersion: 'nexus3',
+				protocol: 'http',
+				repository: 'demo',
+				version: '2.0.0-SNAPSHOT'
+            }
+        }
+	
+	  stage('DeployUsingAnsible'){
+             steps{
+		   ansiblePlaybook credentialsId: 'tomcatubuntu', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.inv', playbook: 'Deploy.yml'
+          }
+       }
+	  
+     }
+
+}
