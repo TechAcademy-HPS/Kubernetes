@@ -25,8 +25,7 @@ pipeline {
 		stage('OWASP ZAP'){
              steps{
 	                      sh "echo $USER"
-		               docker run -v $(pwd)/zap-report:/zap/wrk/:rw -t owasp/zap2docker-stable zap-full-scan.py -t http://13.230.9.67:8080/demo-2.0.0-SNAPSHOT
--j -a -r stable-full-scan-report.html 2> /dev/null; (($? == 2)) && echo 'Done' >&
+		             sh'docker run -v $(pwd)/zap-report:/zap/wrk/:rw -t owasp/zap2docker-stable zap-full-scan.py -t http://13.230.9.67:8080/demo-2.0.0-SNAPSHOT -j -a -r stable-full-scan-report.html 2> /dev/null; (($? == 2)) && echo 'Done' >&2' 
 	              }
         }
 
