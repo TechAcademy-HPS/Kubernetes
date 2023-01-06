@@ -14,11 +14,10 @@ pipeline {
 	              }
         } 
 	   
-	
 	    stage('Deploy'){
              steps{
-		    sshagent(['tomcat']) {
-                   sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/Demo/target/*.war ec2-user@3.112.241.39:/opt/tomcat9/webapps/" 
+		    sshagent(['tomcat credentials']) {
+                   sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/DevSecOps/target/*.war ubuntu@3.112.241.39:/opt/tomcat9/webapps/" 
                   }
               }
         } 
