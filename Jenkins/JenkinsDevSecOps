@@ -24,6 +24,7 @@ pipeline {
 		
 		stage('OWASP ZAP'){
              steps{
+	                      sh "echo $USER"
 		               sh "docker run -t owasp/zap2docker-stable zap-baseline.py  -t http://52.68.193.157:8080/demo-2.0.0-SNAPSHOT"
 	              }
         }
