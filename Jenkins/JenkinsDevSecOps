@@ -22,7 +22,7 @@ pipeline {
 				type: 'war'
 				]
 				],
-				credentialsId: 'nexus credentials',
+				credentialsId: 'nexuscredentials',
 				groupId: 'com.domain',
 				nexusUrl: '18.182.17.242:8081',
 				nexusVersion: 'nexus3',
