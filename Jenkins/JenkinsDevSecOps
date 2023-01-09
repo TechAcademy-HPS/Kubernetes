@@ -13,7 +13,25 @@ pipeline {
 		    sh "mvn clean package"
 	              }
         } 
-	   
+	stage('upload to nexus') {
+            steps {
+                nexusArtifactUploader artifacts: [
+				[
+				artifactId: 'demo',
+				classifier: '',
+				file: 'target/demo-2.0.0-SNAPSHOT.war',
+				type: 'war'
+				]
+				],
+				credentialsId: 'nexus credentials',
+				groupId: 'com.domain',
+				nexusUrl: '18.183.190.3:8081',
+				nexusVersion: 'nexus3',
+				protocol: 'http',
+				repository: 'demo',
+				version: '2.0.0-SNAPSHOT'
+            }
+        }   
 	 /*   stage('Deploy'){
              steps{
 		    sshagent(['tomcat credentials']) {
