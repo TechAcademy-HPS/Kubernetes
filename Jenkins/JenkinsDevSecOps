@@ -14,7 +14,7 @@ pipeline {
 	              }
         } 
 	   
-	    stage('Deploy'){
+	 /*   stage('Deploy'){
              steps{
 		    sshagent(['tomcat credentials']) {
                    sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/DevSecOps/target/*.war ubuntu@13.230.9.67:/var/lib/apache-tomcat-9.0.70/webapps" 
@@ -27,7 +27,11 @@ pipeline {
 	                      sh "echo $USER"
 		            sh 'docker run  --user root -v $(pwd)/zap-report:/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py -t http://13.230.9.67:8080/demo-2.0.0-SNAPSHOT -r stable-baselinescan.html || true'
 	              }
-        }
+        }*/
+	
+	     stage('HTML'){
+	     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'zap-report/ stable-baselinescan.html', reportFiles: 'stable-baselinescan.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+	     }
 
      }
 
