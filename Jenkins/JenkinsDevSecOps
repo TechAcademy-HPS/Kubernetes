@@ -70,7 +70,7 @@ pipeline {
      
      post{
      always{
-         emailext body: 'readFile("zap-report/stable-baselinescan.html")', subject: 'hi', to: 'modemyoshitha@gmail.com'
+        emailext body: 'readFile \'zap-report/stable-baselinescan.html\'', mimeType: 'text/html', replyTo: 'modemyoshitha@gmail.com', subject: 'hi', to: 'modemyoshitha@gmail.com'
         }
      }
     
