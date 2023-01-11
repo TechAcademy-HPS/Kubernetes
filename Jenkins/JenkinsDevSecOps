@@ -12,7 +12,7 @@ pipeline {
 		    sh "mvn clean package"
 	              }
         } 
-	stage('sonar') {
+	/*stage('sonar') {
             steps {
 		    script {
                        withSonarQubeEnv('SonarQubeSrvr') {
@@ -45,11 +45,11 @@ pipeline {
 				repository: 'demo',
 				version: '2.0.0-SNAPSHOT'
             }
-        }   
+        }   */
 	   stage('Deploy'){
               steps{
 		    sshagent(['tomcat credentials']) {
-                   sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/DevSecOps/target/*.war  ubuntu@18.181.170.72:/var/lib/apache-tomcat-9.0.70/webapps" 
+                   sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/DevSecOps/target/*.war  ubuntu@13.231.213.27:/var/lib/apache-tomcat-9.0.70/webapps" 
                   }
               }
         } 
