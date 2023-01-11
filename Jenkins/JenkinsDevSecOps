@@ -70,9 +70,11 @@ pipeline {
      
      post{
      always{
-         emailext attachLog: true, body: '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+         emailext attachLog: true, body: '''Check console output at $BUILD_URL to view the results.
 
-         Check console output at $BUILD_URL to view the results.''', replyTo: 'modemyoshitha@gmail.com', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'modemyoshitha@gmail.com'
+         Check the Zap Scan Report at  :
+
+         readFile("zap-report/stable-baselinescan.html")''', mimeType: 'text/html', replyTo: 'modemyoshitha@gmail.com', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'modemyoshitha@gmail.com'
         }
      }
 
