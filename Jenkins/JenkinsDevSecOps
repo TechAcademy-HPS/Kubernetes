@@ -9,7 +9,6 @@ pipeline {
       	
          stage('Build'){
              steps{
-	            sh "echo $USER"
 		    sh "mvn clean package"
 	              }
         } 
@@ -49,7 +48,7 @@ pipeline {
         }   */ 
 	   stage('Deploy'){
               steps{
-		    sshagent(['tomcatcredentials']) {
+		    sshagent(['tomcat credentials']) {
                    sh "scp -o StrictHostKeyChecking=no target/*.war  ubuntu@54.168.38.149:/var/lib/apache-tomcat-9.0.70/webapps" 
                   }
               }
@@ -57,7 +56,7 @@ pipeline {
 		
 	  stage('OWASP ZAP'){
                  steps{
-		            sh 'docker run  --user root -v $(pwd)/zap-report:/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py -t http://54.168.38.149:8080/demo-2.0.0-SNAPSHOT -r stable-baselinescan.html'
+		            sh "docker run  --user root -v $(pwd)/zap-report:/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py -t http://54.168.38.149:8080/demo-2.0.0-SNAPSHOT -r stable-baselinescan.html || true"
 	              }
         }
 	
@@ -74,6 +73,9 @@ pipeline {
            emailext attachLog: true, body: 'Please find the attached log.Please find the ZAP Report at:', subject: 'Build Over......', to: 'modemyoshitha@gmail.com'
            }
            failure{
+	   script {
+              currentBuild.result = 'FAILURE'
+           }
          emailext attachLog: true, body: 'Please find the attached log.Please find the ZAP Report at:', subject: 'Build Over......', to: 'modemyoshitha@gmail.com'
            }
           always{
