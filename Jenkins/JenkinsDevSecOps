@@ -70,18 +70,13 @@ pipeline {
      
 	 post{
            success{
-           emailext attachLog: true, body: '''Please find the attached build log.
-           Please find the ZAP report at http://18.183.39.121:8080/job/DevSecOps/HTML_20Report/''', replyTo: 'modemyoshitha@gmail.com', subject: 'Build Success', to: 'modemyoshitha@gmail.com'
+           emailext attachLog: true, body: 'Please find attached build logs.Please find the ZAP report at:', subject: 'Build Over'
            }
            failure{
-          emailext attachLog: true, body: '''Please find the attached build log.
-           Please find the ZAP report at http://18.183.39.121:8080/job/DevSecOps/HTML_20Report/''', replyTo: 'modemyoshitha@gmail.com', subject: 'Build Success', to: 'modemyoshitha@gmail.com'
+         emailext attachLog: true, body: 'Please find attached build logs.Please find the ZAP report at:', subject: 'Build Over'
            }
           always{
-             emailext body: '''build over 
-
-             thanks,
-             Yoshitha''', subject: '', to: 'modemyoshitha@gmail.com'
+           emailext attachLog: true, body: 'Please find attached build logs.Please find the ZAP report at:', subject: 'Build Over'
             }
         }
 
