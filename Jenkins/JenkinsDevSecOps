@@ -1,4 +1,6 @@
 def buildno = BUILD_NUMBER
+def readpom
+def pomversion
 pipeline {
     agent any
     tools {
@@ -29,11 +31,13 @@ pipeline {
            }
 	stage('upload to nexus') {
             steps {
+	        readpom = readMavenPom file: 'pom.xml';
+                pomversion = readpom.version;
                 nexusArtifactUploader artifacts: [
 				[
 				artifactId: 'demo',
 				classifier: '',
-				file: 'target/demo-2.0.0-SNAPSHOT.war',
+				file: 'target/demo-${pomversion}.war',
 				type: 'war'
 				]
 				],
@@ -43,7 +47,7 @@ pipeline {
 				nexusVersion: 'nexus3',
 				protocol: 'http',
 				repository: 'demo',
-				version: '2.0.0-SNAPSHOT'
+				version: '${pomversion}'
             }
         }   
 	   stage('Deploy'){
