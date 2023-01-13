@@ -12,7 +12,7 @@ pipeline {
 		    sh "mvn clean package"
 	              }
         } 
-	stage('sonar') {
+	/*stage('sonar') {
             steps {
 		    script {
                        withSonarQubeEnv('SonarQubeSrvr') {
@@ -52,7 +52,7 @@ pipeline {
                    sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/DevSecOps/target/*.war  ubuntu@13.231.37.164:/var/lib/apache-tomcat-9.0.70/webapps" 
                   }
               }
-        } 
+        } */
 		
 	  stage('OWASP ZAP'){
                  steps{
@@ -69,6 +69,11 @@ pipeline {
      }
      
 	 post{
+	     stage('HTML'){
+		   steps{
+	               publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'zap-report/', reportFiles: 'stable-baselinescan.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+	      }
+		 }
            success{
            emailext attachLog: true, body: '''Please find the attached build log.
            Please find the ZAP report at http://18.183.39.121:8080/job/DevSecOps/HTML_20Report/''', replyTo: 'modemyoshitha@gmail.com', subject: 'Build Success', to: 'modemyoshitha@gmail.com'
