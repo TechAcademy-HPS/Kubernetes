@@ -70,21 +70,16 @@ pipeline {
      
 	 post{
            success{
-           emailext attachLog: true, body: 'Please find the attached log.Please find the ZAP Report at:http://35.78.196.52:8080/job/Demo/HTML_20Report/', subject: 'Build Over......', to: 'modemyoshitha@gmail.com'
+           emailext attachLog: true, body: 'Please find the attached log.Please find the ZAP Report at:http://35.78.196.52:8080/job/Demo/HTML_20Report/', subject: 'Build Success......', to: 'modemyoshitha@gmail.com'
            }
            failure{
 	   script {
-              currentBuild.result = 'FAILURE'
+               publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'zap-report/', reportFiles: 'stable-baselinescan.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
            }
-         emailext attachLog: true, body: 'Please find the attached log.Please find the ZAP Report at:http://35.78.196.52:8080/job/Demo/HTML_20Report/', subject: 'Build Over......', to: 'modemyoshitha@gmail.com'
+         emailext attachLog: true, body: 'Please find the attached log.Please find the ZAP Report at:http://35.78.196.52:8080/job/Demo/HTML_20Report/', subject: 'Build Failed......', to: 'modemyoshitha@gmail.com'
            }
         }
 
 	 
-     /*post{
-     always{
-        emailext body: 'readFile \'zap-report/stable-baselinescan.html\'', mimeType: 'text/html', replyTo: 'modemyoshitha@gmail.com', subject: 'hi', to: 'modemyoshitha@gmail.com'
-        }
-     }*/
     
 }
