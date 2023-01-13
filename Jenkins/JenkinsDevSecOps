@@ -12,7 +12,7 @@ pipeline {
 		    sh "mvn clean package"
 	              }
         } 
-	/*stage('sonar') {
+	stage('sonar') {
             steps {
 		    script {
                        withSonarQubeEnv('SonarQubeSrvr') {
@@ -39,7 +39,7 @@ pipeline {
 				],
 				credentialsId: 'nexuscredentials',
 				groupId: 'com.domain',
-				nexusUrl: '18.182.17.242:8081',
+				nexusUrl: '13.114.236.82:8081',
 				nexusVersion: 'nexus3',
 				protocol: 'http',
 				repository: 'demo',
@@ -49,14 +49,14 @@ pipeline {
 	   stage('Deploy'){
               steps{
 		    sshagent(['tomcat credentials']) {
-                   sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/DevSecOps/target/*.war  ubuntu@13.231.213.27:/var/lib/apache-tomcat-9.0.70/webapps" 
+                   sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/DevSecOps/target/*.war  ubuntu@13.231.37.164:/var/lib/apache-tomcat-9.0.70/webapps" 
                   }
               }
         } 
 		
 	  stage('OWASP ZAP'){
                  steps{
-		            sh 'docker run  --user root -v $(pwd)/zap-report:/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py -t http://13.231.213.27:8080/demo-2.0.0-SNAPSHOT -r stable-baselinescan.html || true'
+		            sh 'docker run  --user root -v $(pwd)/zap-report:/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py -t http://13.231.37.164:8080/demo-2.0.0-SNAPSHOT -r stable-baselinescan.html || true'
 	              }
         }
 	
@@ -64,14 +64,36 @@ pipeline {
 		   steps{
 	               publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'zap-report/', reportFiles: 'stable-baselinescan.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
 	      }
-		 }	*/ 
+		 }
 
      }
      
-     post{
+	 post{
+           success{
+           emailext body: '''build over 
+
+           thanks,
+           Yoshitha''', subject: '', to: 'modemyoshitha@gmail.com'
+           }
+           failure{
+             emailext body: '''build failed 
+
+             thanks,
+             Yoshitha''', subject: '', to: 'modemyoshitha@gmail.com'
+           }
+          always{
+             emailext body: '''build over 
+
+             thanks,
+             Yoshitha''', subject: '', to: 'modemyoshitha@gmail.com'
+            }
+        }
+
+	 
+     /*post{
      always{
         emailext body: 'readFile \'zap-report/stable-baselinescan.html\'', mimeType: 'text/html', replyTo: 'modemyoshitha@gmail.com', subject: 'hi', to: 'modemyoshitha@gmail.com'
         }
-     }
+     }*/
     
 }
