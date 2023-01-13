@@ -57,7 +57,7 @@ pipeline {
 		
 	 stage('OWASP ZAP'){
                  steps{
-		            sh 'docker run  --user root -v $(pwd)/zap-report:/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py -t http://54.168.38.149:8080/demo-2.0.0-SNAPSHOT -r stable-baselinescan.html'
+		            sh 'docker run  --user root -v $(pwd)/zap-report:/zap/wrk/:rw -t /zap2docker-stable zap-baseline.py -t http://54.168.38.149:8080/demo-2.0.0-SNAPSHOT -r stable-baselinescan.html'
 	              }
         }
 	
@@ -80,7 +80,7 @@ pipeline {
              
 	              }
                    emailext attachLog: true, attachmentsPattern: 'zap-report/stable-baselinescan.html', body: '''Please find the attached logs.
-                   Please find the ZAP Report at:http://35.78.196.52:8080/job/Demo/HTML_20Report/''', subject: 'BUILD FAILED........', to: 'modemyoshitha@gmail.com'
+	Please find the ZAP Report at:http://35.78.196.52:8080/job/Demo/HTML_20Report/''', subject: 'BUILD FAILED........', to: 'modemyoshitha@gmail.com'
                 }
         }
 
