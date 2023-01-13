@@ -75,8 +75,9 @@ pipeline {
            failure{
 	   script {
                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'zap-report/', reportFiles: 'stable-baselinescan.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
-           }
-         emailext attachLog: true, body: '''${SCRIPT, template="zap-report/stable-baselinescan.html.template"}''', subject: 'Build Failed......', to: 'modemyoshitha@gmail.com'
+                cp  zap-report/stable-baselinescan.html  ${JENKINS_HOME}/email-templates/ 
+	   }
+         emailext attachLog: true, body: '''${SCRIPT, template="stable-baselinescan.html.template"}''', subject: 'Build Failed......', to: 'modemyoshitha@gmail.com'
            }
         }
 
