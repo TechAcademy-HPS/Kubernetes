@@ -1,6 +1,4 @@
 def buildno = BUILD_NUMBER
-def readpom = readMavenPom file: 'pom.xml';
-def pomversion = readpom.version;
 pipeline {
     agent any
     tools {
@@ -36,7 +34,7 @@ pipeline {
 				[
 				artifactId: 'demo',
 				classifier: '',
-				file: 'target/demo-${pomversion}.war',
+				file: 'target/demo-2.0.0-SNAPSHOT.war',
 				type: 'war'
 				]
 				],
@@ -46,7 +44,7 @@ pipeline {
 				nexusVersion: 'nexus3',
 				protocol: 'http',
 				repository: 'demo',
-				version: '${pomversion}'
+				version: '2.0.0-SNAPSHOT'
             }
         }   
 	   stage('Deploy'){
@@ -57,11 +55,11 @@ pipeline {
               }
         }
 		
-	  /*stage('OWASP ZAP'){
+	 stage('OWASP ZAP'){
                  steps{
-		            sh 'docker run  --user root -v $(pwd)/zap-report:/zap/wrk/:rw -t /zap2docker-stable zap-baseline.py -t http://54.168.38.149:8080/demo-2.0.0-SNAPSHOT -r stable-baselinescan.html'
+		            sh 'docker run  --user root -v $(pwd)/zap-report:/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py -t http://54.168.38.149:8080/demo-2.0.0-SNAPSHOT -r stable-baselinescan.html'
 	              }
-        }*/
+        }
 	
 	    stage('HTML'){
 		   steps{
