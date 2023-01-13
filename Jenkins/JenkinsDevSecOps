@@ -79,8 +79,7 @@ pipeline {
                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'zap-report/', reportFiles: 'stable-baselinescan.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
              
 	              }
-                   emailext attachLog: true, attachmentsPattern: 'zap-report/stable-baselinescan.html', body: '''Please find the attached logs.
-	Please find the ZAP Report at:http://35.78.196.52:8080/job/Demo/HTML_20Report/''', subject: 'BUILD FAILED........', to: 'modemyoshitha@gmail.com'
+                   emailext attachLog: true, attachmentsPattern: 'zap-report/stable-baselinescan.html', body: '''Please find the attached logs.Please find the ZAP Report at:http://35.78.196.52:8080/job/Demo/HTML_20Report/''', subject: 'BUILD FAILED........', to: 'modemyoshitha@gmail.com'
                 }
         }
 
