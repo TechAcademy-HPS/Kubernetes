@@ -76,7 +76,7 @@ pipeline {
 	   script {
                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'zap-report/', reportFiles: 'stable-baselinescan.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
            }
-         emailext attachLog: true, body: 'Please find the attached log.Please find the ZAP Report at:http://35.78.196.52:8080/job/Demo/HTML_20Report/', subject: 'Build Failed......', to: 'modemyoshitha@gmail.com'
+         emailext attachLog: true, body: '''${SCRIPT, template="zap-report/stable-baselinescan.html.template"}''', subject: 'Build Failed......', to: 'modemyoshitha@gmail.com'
            }
         }
 
