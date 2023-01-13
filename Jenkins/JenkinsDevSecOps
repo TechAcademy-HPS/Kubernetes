@@ -1,6 +1,6 @@
 def buildno = BUILD_NUMBER
-def readpom
-def pomversion
+def readpom = readMavenPom file: 'pom.xml';
+def pomversion = readpom.version;
 pipeline {
     agent any
     tools {
@@ -31,8 +31,7 @@ pipeline {
            }
 	stage('upload to nexus') {
             steps {
-	        readpom = readMavenPom file: 'pom.xml';
-                pomversion = readpom.version;
+	        
                 nexusArtifactUploader artifacts: [
 				[
 				artifactId: 'demo',
