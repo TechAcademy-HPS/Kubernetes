@@ -22,7 +22,7 @@ pipeline{
                  steps{
                         withSonarQubeEnv('sonarqube8.9'){
                           script{
-                          sonarQube.sonarAnalysis('A1','Spring-Boot-Thymeleaf','http://13.233.33.180:9000','squ_6dd59553941c600ed9a5898128fec3b395759a68')
+                          sonarQube.sonarAnalysis('A1','Spring-Boot-Thymeleaf','http://18.183.199.171:9000','squ_6dd59553941c600ed9a5898128fec3b395759a68')
                    }
                }
            }
