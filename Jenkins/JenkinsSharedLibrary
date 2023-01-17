@@ -27,11 +27,30 @@ pipeline{
                }
            }
        }
-                 stage ('Check logs') {
+	  stage('S_NexusArtifactUploader'){
+            steps{
+                script {
+                      nexus.nexus(
+                      'spring-boot-thymeleaf',
+                      '',
+                      '/var/lib/jenkins/.m2/repository/pl/codeleak/demos/sbt/spring-boot-thymeleaf/2.0.0/spring-boot-thymeleaf-2.0.0.war',
+                      'war',
+                      'nexus',
+                      'pl.codeleak.demos.sbt',
+                      '13.233.100.229:8081',
+                      'nexus3',
+                      'http',
+                      'ansible',
+                      '2.0.0')
+                }
+            }
+        }
+            stage ('Check logs') {
                     steps {
                         filterLogs ('WARNING', 50)
                     }
                 }
 		
-           }	       	     	         
+           }	
+	
 }
