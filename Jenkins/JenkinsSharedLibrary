@@ -22,12 +22,12 @@ pipeline{
                  steps{
                         withSonarQubeEnv('sonarqube8.9'){
                           script{
-                          sonarQube.sonarAnalysis('A1','Spring-Boot-Thymeleaf','http://18.183.199.171:9000','squ_6dd59553941c600ed9a5898128fec3b395759a68')
+                          sonarQube.sonarAnalysis('Demo Maven Webapp','http://18.183.199.171:9000','squ_6dd59553941c600ed9a5898128fec3b395759a68')
                    }
                }
            }
        }
-	  stage('S_NexusArtifactUploader'){
+	 /* stage('S_NexusArtifactUploader'){
             steps{
                 script {
                       nexus.nexus(
@@ -44,7 +44,7 @@ pipeline{
                       '2.0.0')
                 }
             }
-        }
+        }*/
             stage ('Check logs') {
                     steps {
                         filterLogs ('WARNING', 50)
