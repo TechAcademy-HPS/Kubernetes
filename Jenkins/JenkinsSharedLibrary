@@ -22,7 +22,7 @@ pipeline{
                  steps{
                         withSonarQubeEnv('SonarQubeSrvr'){
                           script{
-                          sonarQube.sonarAnalysis('Demo Maven Webapp','http://18.183.199.171:9000','squ_6dd59553941c600ed9a5898128fec3b395759a68')
+                          sonarQube.sonarAnalysis('DemoWebapp','http://18.183.199.171:9000','squ_6dd59553941c600ed9a5898128fec3b395759a68')
                    }
                }
            }
