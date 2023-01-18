@@ -44,6 +44,7 @@ pipeline{
                       '2.0.0-SNAPSHOT')
                 }
             }
+		}
             stage ('Check logs') {
                     steps {
                         filterLogs ('WARNING', 50)
