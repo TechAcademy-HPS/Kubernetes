@@ -51,7 +51,7 @@ pipeline{
                    sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/Demo/target/*.war ec2-user@54.178.117.30:/opt/tomcat9/webapps/" 
                   }
               }
-        } /	 
+        } */	 
       stage('Ansible'){
             
         steps{
