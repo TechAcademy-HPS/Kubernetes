@@ -18,7 +18,7 @@ pipeline{
                       	  }
                	     }  
                  }	
-             stage(S_Sonar_Report){
+            /* stage(S_Sonar_Report){
                  steps{
                         withSonarQubeEnv('SonarQubeSrvr'){
                           script{
@@ -26,7 +26,7 @@ pipeline{
                    }
                }
            }
-       }
+       }*/
 	 stage('S_NexusArtifactUploader'){
             steps{
                 script {
