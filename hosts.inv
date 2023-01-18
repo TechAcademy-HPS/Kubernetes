@@ -18,7 +18,7 @@
 # Ex 2: A collection of hosts belonging to the 'webservers' group:
 
 [webservers]
-54.95.135.145
+35.77.93.251
 
 #ansible_user=ec2-user ansible_password=passwd
 ## alpha.example.org
