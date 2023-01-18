@@ -14,6 +14,7 @@ pipeline{
               stage('maven build'){
                   steps{
                       script{
+			         sh "echo $USER"
 		    	         build('Install')
                       	  }
                	     }  
