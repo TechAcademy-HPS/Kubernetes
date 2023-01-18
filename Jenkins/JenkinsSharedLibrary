@@ -27,24 +27,23 @@ pipeline{
                }
            }
        }
-	 /* stage('S_NexusArtifactUploader'){
+	 stage('S_NexusArtifactUploader'){
             steps{
                 script {
                       nexus.nexus(
-                      'spring-boot-thymeleaf',
+                      'demo',
                       '',
-                      '/var/lib/jenkins/.m2/repository/pl/codeleak/demos/sbt/spring-boot-thymeleaf/2.0.0/spring-boot-thymeleaf-2.0.0.war',
+                      'target/demo-2.0.0-SNAPSHOT.war',
                       'war',
-                      'nexus',
-                      'pl.codeleak.demos.sbt',
-                      '13.233.100.229:8081',
+                      'nexus credentials',
+                      'com.domain',
+                      '18.181.241.2:8081',
                       'nexus3',
                       'http',
-                      'ansible',
-                      '2.0.0')
+                      'demo',
+                      '2.0.0-SNAPSHOT')
                 }
             }
-        }*/
             stage ('Check logs') {
                     steps {
                         filterLogs ('WARNING', 50)
