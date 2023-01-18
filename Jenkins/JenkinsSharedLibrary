@@ -35,7 +35,7 @@ pipeline{
                       '',
                       'target/demo-2.0.0-SNAPSHOT.war',
                       'war',
-                      'nexus credentials',
+                      'nexuscredentials',
                       'com.domain',
                       '18.181.241.2:8081',
                       'nexus3',
