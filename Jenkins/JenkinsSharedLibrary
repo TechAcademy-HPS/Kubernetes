@@ -45,11 +45,16 @@ pipeline{
                 }
             }
 		}
-            stage ('Check logs') {
-                    steps {
-                        filterLogs ('WARNING', 50)
-                    }
-                }
+		 
+      stage('Ansible'){
+            
+        steps{
+		  script {
+			    ansible.ansible_deploy_playbook('hosts.inv','Deploy.yml')
+		  }             		    
+            }
+        }
+            
 		
            }	
 	
