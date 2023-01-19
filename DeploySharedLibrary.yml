@@ -1,6 +1,5 @@
 ---
 - hosts: all
-  remote_user: ansible1
   tasks:
     - name: Deploy to Tomcat
       copy:
