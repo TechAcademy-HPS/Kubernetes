@@ -19,16 +19,16 @@ pipeline{
                       	  }
                	     }  
                  }	
-            /* stage(S_Sonar_Report){
+             stage(S_Sonar_Report){
                  steps{
                         withSonarQubeEnv('SonarQubeSrvr'){
                           script{
-                          sonarQube.sonarAnalysis('DemoWebapp','http://18.183.199.171:9000','squ_6dd59553941c600ed9a5898128fec3b395759a68')
+                          sonarQube.sonarAnalysis('DemoWebapp','http://52.66.242.152:9000','squ_2ba2a1f2195375dd9c1a73c097033a1ed94109d7')
                    }
                }
            }
        }
-	 stage('S_NexusArtifactUploader'){
+	/* stage('S_NexusArtifactUploader'){
             steps{
                 script {
                       nexus.nexus(
