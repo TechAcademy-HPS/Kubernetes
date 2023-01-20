@@ -38,7 +38,7 @@ pipeline{
                       'war',
                       'nexuscredentials',
                       'com.domain',
-                      '18.181.241.2:8081',
+                      '3.111.34.10:8081',
                       'nexus3',
                       'http',
                       'demo',
