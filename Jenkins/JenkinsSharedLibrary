@@ -28,7 +28,7 @@ pipeline{
                }
            }
        }
-	/* stage('S_NexusArtifactUploader'){
+	 stage('S_NexusArtifactUploader'){
             steps{
                 script {
                       nexus.nexus(
@@ -45,7 +45,7 @@ pipeline{
                       '2.0.0-SNAPSHOT')
                 }
             }
-		}*/
+		}
       /* stage('Deploy'){
              steps{
 		    sshagent(['tomcat']) {
