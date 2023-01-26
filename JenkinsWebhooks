@@ -1,1 +1,14 @@
+pipeline {
+    stages {
+        stage('Initialize') {
+            steps {
+                script {
+                   properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')), pipelineTriggers([githubPush()])])
+                }
+                  git branch: master, url: 'https://github.com/TechAcademy-HPS/JavaTest.git'
+            }
+        }
+    }
+}
+
 
