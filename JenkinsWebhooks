@@ -1,13 +1,16 @@
 pipeline {
 agent any
   properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')), pipelineTriggers([githubPush()])])
+  tools {
+        maven "maven3.6.3"
+    }
     stages {
         stage('Initialize') {
-            steps {
-                script {
-                   properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')), pipelineTriggers([githubPush()])])
-                }
-                  git branch: *, url: 'https://github.com/TechAcademy-HPS/JavaTest.git'
+            steps{
+		               sh "mvn clean package"
+                    //git branch: *, url: 'https://github.com/TechAcademy-HPS/JavaTest.git'
+	              }
+                 
             }
         }
     }
