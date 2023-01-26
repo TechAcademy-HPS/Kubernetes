@@ -10,7 +10,7 @@ agent any
             steps{
 	               git branch: '', changelog: false, poll: false, url: 'https://github.com/TechAcademy-HPS/JavaTest.git'
 		       script{
-		       properties([pipelineTriggers([<object of type org.jenkinsci.plugins.ghprb.GhprbTrigger>])])
+		     //  properties([pipelineTriggers([<object of type org.jenkinsci.plugins.ghprb.GhprbTrigger>])])
 		       }
 		               sh "mvn clean package"
                     //git branch: *, url: 'https://github.com/TechAcademy-HPS/JavaTest.git'
