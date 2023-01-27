@@ -9,9 +9,9 @@ agent any
     stages {
         stage('Initialize') {
             steps{
-		       script{
+		      /* script{
 		     // properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')), pipelineTriggers([githubPush()])])
-		     }
+		     }*/
 		               sh "mvn clean package"
                     //git branch: *, url: 'https://github.com/TechAcademy-HPS/JavaTest.git'
 	              }
