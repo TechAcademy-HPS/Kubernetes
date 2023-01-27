@@ -10,7 +10,7 @@ agent any
         stage('Initialize') {
             steps{
 		       script{
-		      properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')), pipelineTriggers([githubPush()])])
+		     // properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')), pipelineTriggers([githubPush()])])
 		     }
 		               sh "mvn clean package"
                     //git branch: *, url: 'https://github.com/TechAcademy-HPS/JavaTest.git'
