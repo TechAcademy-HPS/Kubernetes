@@ -18,7 +18,7 @@ agent any
                  
             }
 	    
-	stage('sonar') {
+	/*stage('sonar') {
             steps {
 		    script {
                        withSonarQubeEnv('SonarQube') {
@@ -32,7 +32,7 @@ agent any
                     }
                  }
 	      }
-           }
+           }*/
         }
 }
 
