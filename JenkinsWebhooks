@@ -12,6 +12,7 @@ agent any
 		      /* script{
 		     // properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')), pipelineTriggers([githubPush()])])
 		     }*/
+		              echo "in master branch"
 		               sh "mvn clean package"
                     //git branch: *, url: 'https://github.com/TechAcademy-HPS/JavaTest.git'
 	              }
