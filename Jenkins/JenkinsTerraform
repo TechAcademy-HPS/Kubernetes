@@ -4,7 +4,7 @@ agent any
         terraform 'terraform-11'
     }
     stages {
-        stage('Initialize') {
+        stage('create ec2 instance') {
             steps{
                     dir('/opt/terraform/') {
                         script {
