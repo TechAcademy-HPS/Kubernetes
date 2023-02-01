@@ -1,39 +1,40 @@
 pipeline {
 agent any
-   //properties([pipelineTriggers([<object of type org.jenkinsci.plugins.ghprb.GhprbTrigger>])])
-   // properties([pipelineTriggers([<object of type org.jenkinsci.plugins.ghprb.GhprbTrigger>])])
-  //properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')), pipelineTriggers([githubPush()])])
   tools {
-        maven "maven3.6.3"
         terraform 'terraform-11'
     }
     stages {
         stage('Initialize') {
             steps{
-		      /* script{
-		     // properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')), pipelineTriggers([githubPush()])])
-		     }*/
-		              echo "in master branch"
-		               sh "mvn clean package"
-                    //git branch: *, url: 'https://github.com/TechAcademy-HPS/JavaTest.git'
-	              }
+		    sh "terraform init"
+	          }
                  
             }
-	    
-	/*stage('sonar') {
-            steps {
-		    script {
-                       withSonarQubeEnv('SonarQube') {
-                       sh "mvn sonar:sonar"
-                      }
-		      timeout(time: 1, unit: 'HOURS') {
-                      def qg = waitForQualityGate()
-                      if (qg.status != 'OK') {
-                           error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                      }
-                    }
-                 }
-	      }
-           }*/
+        stage('format') {
+            steps{
+		    sh "terraform fmt"
+	          }
+                 
+            }
+	stage('plan') {
+            steps{
+		    sh "terraform plan"
+	          }
+                 
+            } 
+	stage('approve') {
+            steps{
+		    sh "terraform apply --auto-approve"
+	          }
+                 
+            }
+
+       stage('apply') {
+            steps{
+		    sh "terraform apply --auto-approve"
+	          }
+                 
+            }
+	
         }
 }
