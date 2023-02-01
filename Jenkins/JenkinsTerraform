@@ -6,36 +6,17 @@ agent any
     stages {
         stage('Initialize') {
             steps{
-	            sh "cd /opt/terraform/"
-		    sh "terraform init"
-	          }
-                 
-            }
-        stage('format') {
-            steps{
-		    sh "terraform fmt"
-	          }
-                 
-            }
-	stage('plan') {
-            steps{
-		    sh "terraform plan"
-	          }
-                 
-            } 
-	stage('approve') {
-            steps{
-		    sh "terraform apply --auto-approve"
-	          }
-                 
-            }
+                    dir('/opt/terraform/') {
+                        script {
+                              sh "terraform init"
+                              sh "terraform fmt"
+                              sh "terraform plan"
+                              sh "terraform apply --auto-approve"
 
-       stage('apply') {
-            steps{
-		    sh "terraform apply --auto-approve"
+                        }
+                      
+                    }
 	          }
-                 
-            }
-	
-        }
-}
+		}
+	}
+}	
