@@ -4,7 +4,7 @@ agent any  
         terraform 'terraform-11'
     }
     stages {
-        stage('create ec2 instance') {
+        stage('init') {
             steps{
                     dir('/opt/terraform/') {
                         script {
@@ -12,21 +12,21 @@ agent any  
                     }
               }
         }
-        stage('create ec2 instance') {
+        stage('fmt') {
             steps{
                     dir('/opt/terraform/') {
                               sh "terraform fmt"
                     }
               }
         }
-        stage('create ec2 instance') {
+        stage('plan') {
             steps{
                     dir('/opt/terraform/') {
                               sh "terraform plan"
                     }
               }
         }
-        stage('create ec2 instance') {
+        stage('approve') {
             steps{
                     dir('/opt/terraform/') {
                               sh "terraform apply --auto-approve"
