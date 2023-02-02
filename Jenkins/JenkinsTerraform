@@ -1,37 +1,47 @@
 pipeline {
-  agent any
-tools {
-        terraform 'terraform-11'
-    }
-    stages {
-        stage('init') {
-            steps{
-                    dir('/opt/terraform/') {
-                        script {
-                              sh "terraform init"                         }
-                    }
-              }
-        }
-        stage('fmt') {
-            steps{
-                    dir('/opt/terraform/') {
-                              sh "terraform fmt"
-                    }
-              }
-        }
-        stage('plan') {
-            steps{
-                    dir('/opt/terraform/') {
-                              sh "terraform plan"
-                    }
-              }
-        }
-        stage('approve') {
-            steps{
-                    dir('/opt/terraform/') {
-                              sh "terraform apply --auto-approve"
-                    }
-              }
-        }
-    }
-}    
+agent any  
+    tools {
+        terraform 'terraform-11'
+    }
+    stages {
+        stage('create ec2 instance') {
+            steps{
+                    dir('/opt/terraform/') {
+                        script {
+						
+                              sh "terraform init"
+
+                        }
+                      
+                    }
+	          }
+		}
+		
+		stage('create ec2 instance') {
+            steps{
+                    dir('/opt/terraform/') {
+					
+                              sh "terraform fmt"
+                      
+                    }
+	          }
+		}
+		stage('create ec2 instance') {
+            steps{
+                    dir('/opt/terraform/') {
+					
+                              sh "terraform plan"
+                      
+                    }
+	          }
+		}
+		stage('create ec2 instance') {
+            steps{
+                    dir('/opt/terraform/') {
+                              sh "terraform apply --auto-approve"
+                      
+                    }
+	          }
+		}
+	}
+}	
