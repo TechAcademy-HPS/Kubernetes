@@ -6,7 +6,7 @@ agent any
     }
     stages {
     
-       stage('init') {
+       stage('build') {
             steps{
                     sh "mvn clean package"
 	          }
