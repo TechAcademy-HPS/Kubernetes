@@ -5,12 +5,17 @@ agent any
 	maven "maven3.6.3"
     }
     stages {
+    
+       stage('init') {
+            steps{
+                    sh "mvn clean package"
+	          }
+		}
         stage('init') {
             steps{
                     dir('WORKSPACE/terraform/') {
                         script {		
 			                                  echo WORKSPACE
-							  sh "mvn clean package"
                                                           sh "terraform init"
 							  sh "terraform fmt" 
 							  sh "terraform plan"
