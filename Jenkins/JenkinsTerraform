@@ -13,7 +13,7 @@ agent any
 		}
         stage('init') {
             steps{
-                    dir('WORKSPACE/terraform/Terraform/') {
+                    dir('/opt/terraform/JavaTest/Terraform/') {
                         script {		
 			                                  echo USER
                                                           sh "terraform init"
