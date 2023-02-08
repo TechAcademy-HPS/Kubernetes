@@ -6,14 +6,15 @@ agent any
     stages {
         stage('init') {
             steps{
-                    
-                        script {		echo WORKSPACE
-			                        echo $WORKSPACE
+                    dir('WORKSPACE/terraform/') {
+                        script {		
+			                                  echo WORKSPACE
                                                           sh "terraform init"
 							  sh "terraform fmt" 
 							  sh "terraform plan"
 							  sh "terraform apply --auto-approve"
                         }
+			}
 	          }
 		}
 	  /*	stage('init') {
