@@ -8,7 +8,7 @@ agent any
             steps{
                     
                         script {		
-                              sh "terraform init"
+                                                          sh "terraform init"
 							  sh "terraform fmt" 
 							  sh "terraform plan"
 							  sh "terraform apply --auto-approve"
