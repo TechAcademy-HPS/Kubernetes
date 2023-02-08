@@ -7,7 +7,8 @@ agent any
         stage('init') {
             steps{
                     
-                        script {		echo "$pwd"
+                        script {		echo "JENKINS_HOME"
+			                        echo JENKINS_HOME
                                                           sh "terraform init"
 							  sh "terraform fmt" 
 							  sh "terraform plan"
