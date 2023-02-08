@@ -15,7 +15,7 @@ agent any
             steps{
                     dir('WORKSPACE/terraform/Terraform/') {
                         script {		
-			                                  echo $USER
+			                                  echo USER
                                                           sh "terraform init"
 							  sh "terraform fmt" 
 							  sh "terraform plan"
