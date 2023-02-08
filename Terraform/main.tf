@@ -6,5 +6,5 @@
   # }
 
 module "ec2" {
-    source = "C:/Users/10710592/Desktop/Terraform/JavaTest/Terraform/ec2"
+    source = "/var/lib/jenkins/workspace/terraform/Terraform/ec2"
 }
