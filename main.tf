@@ -21,3 +21,7 @@ module "ec2" {
  module "vpc" {
     source = "/var/lib/jenkins/workspace/terraform/Terraform/vpc"
 }
+   
+ module "vpc" {
+    source = "/var/lib/jenkins/workspace/terraform/Terraform/s3"
+}
