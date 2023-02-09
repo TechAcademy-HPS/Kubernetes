@@ -1,9 +1,9 @@
-resource "aws_s3_bucket" "my-s3" {
-  bucket = "sbrtechworld"
+resource "aws_s3_bucket" "yoshithac8-s3" {
+  bucket = "yoshithac89"
   acl    = "private"
 
   tags = {
-    Name        = "Mybucket"
-    Environment = "Dev"
+    Name        = "Yoshithabucket"
+    Environment = "feature"
   }
 }
