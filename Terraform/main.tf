@@ -8,3 +8,7 @@
 module "ec2" {
     source = "/var/lib/jenkins/workspace/terraform/Terraform/ec2"
 }
+ 
+ module "vpc" {
+    source = "/var/lib/jenkins/workspace/terraform/Terraform/vpc"
+}
