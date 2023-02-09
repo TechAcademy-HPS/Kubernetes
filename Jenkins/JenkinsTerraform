@@ -8,7 +8,7 @@ agent any
     
        stage('build') {
             steps{
-                   // sh "mvn clean package"
+                   sh "mvn clean package"
 		   sh "terraform --version"
 		   sh "terraform init"
 		  
