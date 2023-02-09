@@ -22,6 +22,6 @@ module "ec2" {
     source = "/var/lib/jenkins/workspace/terraform/Terraform/vpc"
 }
    
- module "vpc" {
+ module "s3" {
     source = "/var/lib/jenkins/workspace/terraform/Terraform/s3"
 }
