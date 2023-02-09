@@ -10,6 +10,7 @@ agent any
             steps{
                    // sh "mvn clean package"
 		   sh "terraform --version"
+		   sh "terraform init"
 	          }
 		}
         /*stage('init') {
