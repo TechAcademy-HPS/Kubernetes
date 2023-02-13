@@ -73,7 +73,7 @@ pipeline {
              steps{
 	          // sh 'ansible aws_ec2 -i aws_ec2.yaml -m ping --ssh-common-args="-o StrictHostKeyChecking=no" -u ubuntu --private-key=keypair.pem'
 		   sh 'ansible aws_ec2 -i aws_ec2.yaml -m ping --ssh-common-args="-o StrictHostKeyChecking=no" -u ubuntu --private-key=/var/lib/jenkins/keypair.pem'
-		   sh 'ansible-playbook dynamic.yml -i aws_ec2.yaml --ssh-common-args="-o StrictHostKeyChecking=no" -u ubuntu --private-key=/home/ubuntu/keypair.pem'
+		   sh 'ansible-playbook dynamic.yaml -i aws_ec2.yaml --ssh-common-args="-o StrictHostKeyChecking=no" -u ubuntu --private-key=/home/ubuntu/keypair.pem'
 		   //ansiblePlaybook credentialsId: 'tomcatubuntu', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.inv', playbook: 'Deploy.yml'
           }
        }
