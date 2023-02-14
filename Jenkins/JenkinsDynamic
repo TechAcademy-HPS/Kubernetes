@@ -1,1 +1,32 @@
+def buildno = BUILD_NUMBER
+pipeline {
+    agent any
+    
+    tools {
+        maven "maven3.6.3"
+    }
+	
+    stages {
+      	
+       stage('Build'){
+             steps{
+		    sh "mvn clean package"
+	              }
+          } 
+	
+	  stage('connectivity check'){
+             steps{
+		        sh 'ansible aws_ec2 -i aws_ec2.yaml -m ping --ssh-common-args="-o StrictHostKeyChecking=no" -u ubuntu --private-key=/var/lib/jenkins/keypair.pem'
+          }
+       }
+	
+	
+	  stage('Deploy'){
+            steps{
+			       sh 'ansible-playbook dynamic.yaml -i aws_ec2.yaml --ssh-common-args="-o StrictHostKeyChecking=no" -u ubuntu --private-key=/home/ubuntu/keypair.pem'
+              }
+        }
+	  
+     }
 
+}
