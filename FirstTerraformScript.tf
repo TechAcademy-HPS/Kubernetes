@@ -11,3 +11,4 @@ resource "aws_instance" "AWSEC2Instance"{
     Name = "Redhat_Terraform"
     Environment = "dev"
    }
+}
