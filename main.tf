@@ -18,10 +18,10 @@ module "ec2" {
     source = "/var/lib/jenkins/workspace/terraform/Terraform/ec2"
 }
  
- module "vpc" {
-    source = "/var/lib/jenkins/workspace/terraform/Terraform/vpc"
-}
+#  module "vpc" {
+#     source = "/var/lib/jenkins/workspace/terraform/Terraform/vpc"
+# }
    
- module "s3" {
-    source = "/var/lib/jenkins/workspace/terraform/Terraform/s3"
-}
+#  module "s3" {
+#     source = "/var/lib/jenkins/workspace/terraform/Terraform/s3"
+# }
