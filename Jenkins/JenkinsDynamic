@@ -14,6 +14,16 @@ pipeline {
 	              }
           } 
 	
+	 stage('build') {
+            steps{
+                   sh "mvn clean package"
+		   sh "terraform --version"
+		   sh "terraform init"
+		   sh "terraform fmt" 
+		   sh "terraform plan"
+		   sh "terraform apply --auto-approve"
+	          }
+		}
 	  stage('connectivity check'){
              steps{
 		        sh 'ansible aws_ec2 -i aws_ec2.yaml -m ping --ssh-common-args="-o StrictHostKeyChecking=no" -u ubuntu --private-key=/var/lib/jenkins/keypair.pem'
