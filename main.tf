@@ -1,32 +1,14 @@
-# terraform {
-#   required_providers {
-#     aws = {
-#       source  = "hashicorp/aws"
-#       version = "~> 4.0"
-#     }
-#   }
-# }
-
-#Configure the AWS Provider
-terraform{
-provider "aws"{
-  region = "ap-south-1"
-#   access_key = "AKIAWJDJZ666JBJRYGND"
-#   secret_key = "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"
+terraform {
+  required_providers {
+   aws = {
+        region = "ap-south-1"
+       source  = "hashicorp/aws"
+      version = "~> 4.0"  
+   }
   }
 }
 
-# terraform {
-#   required_providers {
-#     aws = {
-#       source  = "hashicorp/aws"
-#       version = "~> 4.0"
-#       region = "ap-south-1"
-#       access_key = "AKIAWJDJZ666JBJRYGND"
-#       secret_key = "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"
-#     }
-#   }
-# }
+
 
 module "ec2" {
     source = "/var/lib/jenkins/workspace/terraform/Terraform/ec2"
