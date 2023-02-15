@@ -31,11 +31,11 @@ pipeline {
        }
 	
 	
-	  stage('Deploy'){
+	  /*stage('Deploy'){
             steps{
 			     //  sh 'ansible-playbook Deploy.yml -i aws_ec2.yaml --ssh-common-args="-o StrictHostKeyChecking=no" -u ubuntu --private-key=/home/ubuntu/keypair.pem'
               }
-        }
+        }*/
 	  
      }
 
