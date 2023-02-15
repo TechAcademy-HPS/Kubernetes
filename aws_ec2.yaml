@@ -4,3 +4,4 @@ regions:
 filters:
   # All instances with their `Environment` tag set to `dev`
   #tag:Env: dev
+  tag:Environment: dev
