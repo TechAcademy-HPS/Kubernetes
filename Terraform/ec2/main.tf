@@ -21,5 +21,6 @@ resource "aws_instance" "AWSEC2Instance"{
    key_name = "keypair"
    tags = {
     Name = "Redhat_Terraform"
+    Environment = "dev"
    }
 }
