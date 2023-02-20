@@ -10,20 +10,20 @@
 - name: Install lxml
   pip: 
     name: lxml
-- name: Nexus Artifact deploy
-  maven_artifact:
-    group_id: pl.codeleak.demos.sbt
-    artifact_id: spring-boot-thymeleaf
-    extension: war
-    version: 2.0.0
-    repository_url: "{{ deploy_url }}"
-    username: admin
-    password: admin
+# - name: Nexus Artifact deploy
+#   maven_artifact:
+#     group_id: pl.codeleak.demos.sbt
+#     artifact_id: spring-boot-thymeleaf
+#     extension: war
+#     version: 2.0.0
+#     repository_url: "{{ deploy_url }}"
+#     username: admin
+#     password: admin
 # Intergrating ansible_vault here for credentials
 #    username: nexus_username
  #   password: nexus_password
-    dest: "{{ tmp_repo }}"
-    mode: '0755'
+#     dest: "{{ tmp_repo }}"
+#     mode: '0755'
 - name: remove artifact file in latest tomcat
   file:
     path: "{{ tomcat_latest }}/webapps/{{ deploy_file_name }}"
