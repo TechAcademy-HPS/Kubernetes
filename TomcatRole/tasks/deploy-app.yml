@@ -38,6 +38,6 @@
     owner: tomcat
     group: tomcat
     force: true
-    remote_src: true
+#     remote_src: true
   notify:
     - reload the daemon, enable and start the tomcat service
