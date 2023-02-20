@@ -14,23 +14,33 @@ pipeline {
 	              }
           } 
 	
-	 stage('build') {
+	 stage('init') {
             steps{
-                   sh "mvn clean package"
-		   sh "terraform --version"
 		   sh "terraform init"
+	          }
+		}
+		
+	  stage('format') {
+            steps{
 		   sh "terraform fmt" 
+	          }
+		}
+		
+	  stage('plan') {
+            steps{
 		   sh "terraform plan"
+	          }
+		}
+	  stage('approve') {
+            steps{
 		   sh "terraform apply --auto-approve"
 	          }
 		}
 	  stage('connectivity check'){
              steps{
 		        sh 'ansible aws_ec2 -i aws_ec2.yaml -m ping --ssh-common-args="-o StrictHostKeyChecking=no" -u ubuntu --private-key=/var/lib/jenkins/keypair.pem'
-          }
-       }
-	
-	
+             }
+         }
 	  stage('Deploy'){
             steps{
 			sh 'ansible-playbook Deploy.yml -i aws_ec2.yaml --ssh-common-args="-o StrictHostKeyChecking=no" -u ubuntu --private-key=/home/ubuntu/keypair.pem'
