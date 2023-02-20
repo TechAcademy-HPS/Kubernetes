@@ -10,6 +10,7 @@ resource "aws_instance" "slave" {
   vpc_security_group_ids = [aws_security_group.my-ec2-security.id]
   tags = {
      Name = "my-ec2-instance"
+     Environment = "dev"
   }  
 } 
  resource "aws_security_group" "my-ec2-security" {
