@@ -1,0 +1,58 @@
+def buildno = BUILD_NUMBER
+pipeline {
+    agent any
+    tools {
+        maven "maven3.6.3"
+    }
+	
+    stages {
+      	
+         stage('Build'){
+             steps{
+		    sh "mvn clean package"
+	              }
+        } 
+	   
+	
+	stage('Building image') {
+            steps{
+                script {
+			  sh "docker build -t public.ecr.aws/g7r5s0z3/expressappcontainer:${buildno} ." 
+                     }
+                  }
+              }
+	      
+	stage('push to repo') {
+            steps{
+                script {
+			  withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerpassword', usernameVariable: 'dockeruser')]) {
+                                        
+					sh 'docker login -u yoshithadocker -p ${dockerpassword}'
+			                sh "docker push yoshithadocker/mydockerrepo:${buildno}"
+                     }
+                  }
+              }
+          }
+	   /*  stage('Deploy'){
+             steps{
+		    sshagent(['tomcat']) {
+                   sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/Demo/target/*.war ec2-user@3.112.241.39:/opt/tomcat9/webapps/" 
+                  }
+              }
+        } 
+	  
+	 
+        stage('K8S Deploy') {
+             steps{   
+              script {
+                 
+		      kubeconfig(credentialsId: 'kubeconfig', serverUrl: 'https://394B0D2B64F459D83B8A7C980116DC28.gr7.us-east-2.eks.amazonaws.com') {
+                                 sh ('kubectl apply -f  eks-deploy-k8s.yaml')
+                             }
+             }
+            }
+        }*/
+
+     }
+
+}
