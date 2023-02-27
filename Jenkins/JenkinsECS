@@ -25,11 +25,7 @@ pipeline {
 	stage('push to repo') {
             steps{
                 script {
-			  withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerpassword', usernameVariable: 'dockeruser')]) {
-                                        
-					//sh 'docker login -u yoshithadocker -p ${dockerpassword}'
-			                sh "docker push  public.ecr.aws/g7r5s0z3/expressappcontainer:${buildno}"
-                     }
+			  aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/g7r5s0z3
                   }
               }
           }
