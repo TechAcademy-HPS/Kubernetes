@@ -36,19 +36,19 @@ pipeline {
                    sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/Demo/target/*.war ec2-user@3.112.241.39:/opt/tomcat9/webapps/" 
                   }
               }
-        } 
+        } */
 	  
 	 
         stage('K8S Deploy') {
              steps{   
               script {
                  
-		      kubeconfig(credentialsId: 'kubeconfig', serverUrl: 'https://394B0D2B64F459D83B8A7C980116DC28.gr7.us-east-2.eks.amazonaws.com') {
+		      kubeconfig(credentialsId: 'kubeconfig', serverUrl: '') {
                                  sh ('kubectl apply -f  eks-deploy-k8s.yaml')
                              }
              }
             }
-        }*/
+        }
 
      }
 
