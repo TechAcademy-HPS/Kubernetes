@@ -22,7 +22,7 @@ pipeline {
                   }
               }
 	      
-	stage('push to repo') {
+	 /*stage('push to repo') {
             steps{
                 script {
 			 sh "aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/g7r5s0z3"
@@ -30,7 +30,7 @@ pipeline {
                   }
               }
           }
-	   /*  stage('Deploy'){
+	    stage('Deploy'){
              steps{
 		    sshagent(['tomcat']) {
                    sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/Demo/target/*.war ec2-user@3.112.241.39:/opt/tomcat9/webapps/" 
