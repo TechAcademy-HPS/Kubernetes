@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: my-springboot-app
-        image: yoshithadocker/mydockerrepo:67
+        image: public.ecr.aws/g7r5s0z3/expressappcontainer:11
         imagePullPolicy: Always
         ports:
         - containerPort: 9090
