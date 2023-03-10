@@ -1,8 +1,6 @@
 def buildno = BUILD_NUMBER
-def readpom
-readpom = readMavenPom file: 'pom.xml';
+def readpom = readMavenPom file: 'pom.xml';
 def pomversion = readpom.version;
-echo '${pomversion}'
 pipeline {
     agent any
     tools {
