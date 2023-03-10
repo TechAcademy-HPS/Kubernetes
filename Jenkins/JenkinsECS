@@ -43,7 +43,7 @@ pipeline {
 	            readpom = readMavenPom file: 'pom.xml';
                     def pomversion = readpom.version;
                     withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubeconfig', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
-                    #sh "kubectl set image deployment/springboot-app my-springboot-app=public.ecr.aws/g7r5s0z3/expressappcontainer:${pomversion}"
+                    //sh "kubectl set image deployment/springboot-app my-springboot-app=public.ecr.aws/g7r5s0z3/expressappcontainer:${pomversion}"
 		    sh ('kubectl apply -f  eks-deploy-k8s.yaml set image deployment/springboot-app my-springboot-app=public.ecr.aws/g7r5s0z3/expressappcontainer:${pomversion}')
                            }
              }
