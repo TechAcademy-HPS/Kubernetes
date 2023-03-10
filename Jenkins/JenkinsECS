@@ -1,4 +1,5 @@
 def buildno = BUILD_NUMBER
+def readpom
 pipeline {
     agent any
     tools {
@@ -17,7 +18,10 @@ pipeline {
 	stage('Building image') {
             steps{
                 script {
-			  sh "docker build -t public.ecr.aws/g7r5s0z3/expressappcontainer ."
+		          readpom = readMavenPom file: 'pom.xml';
+                          def pomversion = readpom.version;
+                          echo '${pomversion}'
+			  sh "docker build -t public.ecr.aws/g7r5s0z3/expressappcontainer:${pomversion} ."
                      }
                   }
               }
