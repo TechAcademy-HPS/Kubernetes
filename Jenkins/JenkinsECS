@@ -44,7 +44,7 @@ pipeline {
 	  
 	 stage('helm') {
             steps{
-                     sh "helm upgrade ui helm-charts/ --set image.tag=${buildno}"
+                     sh "helm upgrade ui helm-charts/ --set image.tag=14"
                   }
               }
 	
