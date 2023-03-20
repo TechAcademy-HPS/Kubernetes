@@ -21,6 +21,7 @@ pipeline {
                 script {
 		          readpom = readMavenPom file: 'pom.xml';
                           def pomversion = readpom.version;
+			  sh "docker rmi yoshithadocker/mydockerrepor:44"
 			  sh "docker build -t yoshithadocker/mydockerrepor:44 ."
                      }
                   }
@@ -34,7 +35,8 @@ pipeline {
 			// sh "aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/g7r5s0z3"
 			//  sh "docker push public.ecr.aws/g7r5s0z3/expressappcontainer:${pomversion}"
 			
-			withCredentials([usernamePassword(credentialsId: 'dockercredentials', passwordVariable: '', usernameVariable: '')]) {
+			withCredentials([usernamePassword(credentialsId: 'dockercredentials', passwordVariable: 'dockerpassword', usernameVariable: '')]) {
+			         sh 'docker login -u yoshithadocker -p ${dockerpassword}'
                                  sh "docker push yoshithadocker/mydockerrepo:44"
                           }
                   }
