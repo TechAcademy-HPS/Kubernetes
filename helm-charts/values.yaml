@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: yoshithadocker/mydockerrepo
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "44"
 
 
 
@@ -16,7 +16,7 @@ service:
   type: LoadBalancer
   port: 80
   name: ui
-  targetPort: 80
+  targetPort: 8080
   
 container:
   name: react-ui
