@@ -21,8 +21,8 @@ pipeline {
                 script {
 		          readpom = readMavenPom file: 'pom.xml';
                           def pomversion = readpom.version;
-			  sh "docker rmi yoshithadocker/mydockerrepor:44"
-			  sh "docker build -t yoshithadocker/mydockerrepor:44 ."
+			  sh "docker rmi yoshithadocker/mydockerrepo:44"
+			  sh "docker build -t yoshithadocker/mydockerrepo:44 ."
                      }
                   }
               }
