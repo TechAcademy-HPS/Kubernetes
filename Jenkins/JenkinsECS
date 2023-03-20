@@ -16,7 +16,7 @@ pipeline {
         } 
 	   
 	
-	/*stage('Building image') {
+	stage('Building image') {
             steps{
                 script {
 		          readpom = readMavenPom file: 'pom.xml';
@@ -41,7 +41,7 @@ pipeline {
                           }
                   }
               }
-          }*/
+          }
 	  
 	 stage('helm') {
             steps{
