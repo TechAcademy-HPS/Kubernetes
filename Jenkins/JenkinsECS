@@ -33,10 +33,19 @@ pipeline {
                          def pomversion = readpom.version;
 			// sh "aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/g7r5s0z3"
 			//  sh "docker push public.ecr.aws/g7r5s0z3/expressappcontainer:${pomversion}"
-			sh "docker push yoshithadocker/mydockerrepo:44"
+			
+			withCredentials([usernamePassword(credentialsId: 'dockercredentials', passwordVariable: '', usernameVariable: '')]) {
+                                 sh "docker push yoshithadocker/mydockerrepo:44"
+                          }
                   }
               }
           }
+	  
+	 stage('helm') {
+            steps{
+                     sh "helm upgrade ui helm-charts/"
+                  }
+              }
 	
         stage('K8S Deploy') {
              steps{   
