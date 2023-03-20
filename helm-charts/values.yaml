@@ -13,8 +13,8 @@ image:
 
 
 service:
-  type: NodePort
-  port: 8080
+  type: LoadBalancer
+  port: 80
   name: ui
   targetPort: 8080
   
