@@ -21,7 +21,7 @@ pipeline {
                 script {
 		          readpom = readMavenPom file: 'pom.xml';
                           def pomversion = readpom.version;
-			  sh "docker build -t yoshithadocker/mydockerrepo:45 ."
+			  sh "docker build -t yoshithadocker/mydockerrepo:${buildno} ."
                      }
                   }
               }
@@ -36,7 +36,7 @@ pipeline {
 			
 			withCredentials([usernamePassword(credentialsId: 'dockercredentials', passwordVariable: 'dockerpassword', usernameVariable: '')]) {
 			         sh 'docker login -u yoshithadocker -p ${dockerpassword}'
-                                 sh "docker push yoshithadocker/mydockerrepo:45"
+                                 sh "docker push yoshithadocker/mydockerrepo:${buildno}"
                           }
                   }
               }
@@ -44,7 +44,7 @@ pipeline {
 	  
 	 stage('helm') {
             steps{
-                     sh "helm upgrade ui helm-charts/"
+                     sh "helm upgrade ui helm-charts/ --set image.tag=${buildno}"
                   }
               }
 	
