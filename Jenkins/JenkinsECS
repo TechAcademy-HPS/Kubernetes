@@ -21,7 +21,7 @@ pipeline {
                 script {
 		          readpom = readMavenPom file: 'pom.xml';
                           def pomversion = readpom.version;
-			  //sh "docker rmi yoshithadocker/mydockerrepo:44"
+			  sh "docker rmi yoshithadocker/mydockerrepo:44"
 			  sh "docker build -t yoshithadocker/mydockerrepo:44 ."
                      }
                   }
@@ -49,7 +49,7 @@ pipeline {
                   }
               }
 	
-        stage('K8S Deploy') {
+        /*stage('K8S Deploy') {
              steps{   
               script {
 	            readpom = readMavenPom file: 'pom.xml';
@@ -59,7 +59,7 @@ pipeline {
 		     sh "kubectl set image deployment/springboot-app my-springboot-app=public.ecr.aws/g7r5s0z3/expressappcontainer:${pomversion}"
                            }
              }
-            }
+            }*/
         }
 
      }
