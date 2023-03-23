@@ -1,11 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: springboot-app
+  name: springboot-app
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: springboot-app
+  template:
+    metadata:
+      labels:
+        app: springboot-app
+    spec:
+      containers:
+      - name: my-springboot-app
+        image: public.ecr.aws/g7r5s0z3/expressappcontainer:${pomversion}
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9090
+          name: http
+          protocol: TCP
+# service type loadbalancer       
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: javawebappservice
+  labels:
+    app: springboot-app
+    k8s-app: springboot-app
+  name: springboot-app
 spec:
   type: NodePort
   selector:
-     app: javawebapp
+     app: springboot-app
   ports:
   - port: 80
     targetPort: 8080
