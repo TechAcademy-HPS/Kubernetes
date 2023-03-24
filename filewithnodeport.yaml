@@ -20,7 +20,7 @@ spec:
           path: /tmp/mongodb 
       containers:
       - name: my-springboot-app
-        image: public.ecr.aws/g7r5s0z3/expressappcontainer:${pomversion}
+        image: https://hub.docker.com/repository/docker/yoshithadocker/mydockerrepo:${pomversion}
         imagePullPolicy: Always
         ports:
         - containerPort: 9090
