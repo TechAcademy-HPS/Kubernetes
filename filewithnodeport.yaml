@@ -26,6 +26,9 @@ spec:
         - containerPort: 9090
           name: http
           protocol: TCP
+		volumeMounts:
+        - name: hostpathvol
+          mountPath: /data/db
 # service type loadbalancer       
 ---
 apiVersion: v1
