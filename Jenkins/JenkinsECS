@@ -19,8 +19,7 @@ pipeline {
 	stage('Building image') {
             steps{
                 script {
-		          readpom = readMavenPom file: 'pom.xml';
-                          def pomversion = readpom.version;
+		          
 			  sh "docker build -t yoshithadocker/mydockerrepo:${buildno} ."
                      }
                   }
@@ -29,7 +28,7 @@ pipeline {
 	 stage('push to repo') {
             steps{
                 script {
-		         readpom = readMavenPom file: 'pom.xml';
+		         
                          def pomversion = readpom.version;
 			// sh "aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/g7r5s0z3"
 			//  sh "docker push public.ecr.aws/g7r5s0z3/expressappcontainer:${pomversion}"
