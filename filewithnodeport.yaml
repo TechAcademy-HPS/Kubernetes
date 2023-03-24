@@ -29,6 +29,7 @@ spec:
 	volumeMounts:
         - name: hostpathvol
           mountPath: /data/db
+	  
 # service type loadbalancer       
 ---
 apiVersion: v1
