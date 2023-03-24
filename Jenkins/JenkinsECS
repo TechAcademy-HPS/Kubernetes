@@ -9,7 +9,7 @@ pipeline {
 	
     stages {
       	
-         stage('Build'){
+       /*   stage('Build'){
              steps{
 		    sh "mvn clean package"
 	              }
@@ -40,7 +40,7 @@ pipeline {
               }
           }
 	  
-	 /*stage('helm') {
+	stage('helm') {
             steps{
                      sh "helm upgrade ui helm-charts/ --set image.tag=${buildno}"
                   }
