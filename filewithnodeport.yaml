@@ -43,5 +43,5 @@ spec:
   selector:
      app: springboot-app
   ports:
-  - port: 80
-    targetPort: 9090
+  - port: 9090
+    targetPort: 80
