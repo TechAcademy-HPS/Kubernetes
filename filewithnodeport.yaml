@@ -20,7 +20,7 @@ spec:
           path: /tmp/mongodb 
       containers:
       - name: my-springboot-app
-        image: yoshithadocker/mydockerrepo:${buildno}
+        image: yoshithadocker/mydockerrepo:17
         imagePullPolicy: Always
         ports:
         - containerPort: 9090
