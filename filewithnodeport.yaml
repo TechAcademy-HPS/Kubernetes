@@ -17,7 +17,7 @@ spec:
       volumes:
       - name: hostpathvol
         hostPath:
-          path: /home/ubuntu/podlogs
+          path: /tmp/
       containers:
       - name: my-springboot-app
         image: yoshithadocker/mydockerrepo:17
@@ -28,7 +28,7 @@ spec:
           protocol: TCP
         volumeMounts:
         - name: hostpathvol
-          mountPath: /home/ubuntu
+          mountPath: /home/ubuntu/
 # service type loadbalancer       
 ---
 apiVersion: v1
