@@ -17,7 +17,7 @@ spec:
       volumes:
       - name: hostpathvol
         hostPath:
-          path: /tmp/mongodb 
+          path: /home/ubuntu/podlogs
       containers:
       - name: my-springboot-app
         image: yoshithadocker/mydockerrepo:17
@@ -28,7 +28,7 @@ spec:
           protocol: TCP
         volumeMounts:
         - name: hostpathvol
-          mountPath: /data/db
+          mountPath: /home/ubuntu
 # service type loadbalancer       
 ---
 apiVersion: v1
