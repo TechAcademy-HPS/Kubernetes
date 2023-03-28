@@ -1,33 +1,49 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres-deployment
+  labels:
+    app: springboot-app
+  name: springboot-app
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      component: postgres
+      app: springboot-app
   template:
     metadata:
       labels:
-        component: postgres
+        app: springboot-app
     spec:
       volumes:
-        - name: postgres-storage
-          persistentVolumeClaim:
-            claimName: database-persistent-volume-claim
+      - name: www
+        persistentVolumeClaim:
+          claimName: database-persistent-volume-claim
       containers:
-        - name: postgres
-          image: postgres
-          ports:
-            - containerPort: 5432
-          volumeMounts:
-            - name: postgres-storage
-              mountPath: /var/lib/postgresql/data
-              subPath: postgres
-          env:
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: pgpassword
-                  key: PGPASSWORD
+      - name: my-springboot-app
+        image: nginx
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        volumeMounts:
+        - name: www
+          mountPath: /usr/share/nginx/html
+# service type loadbalancer       
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: springboot-app
+    k8s-app: springboot-app
+  name: springboot-app
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  type: NodePort
+  selector:
+    app: springboot-app
