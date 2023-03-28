@@ -19,8 +19,8 @@ spec:
         persistentVolumeClaim:
           claimName: database-persistent-volume-claim
       containers:
-      - image: nginx
-        name: nginx
+      - name: nginx
+        image: nginx
         volumeMounts:
         - name: www
           mountPath: /usr/share/nginx/html
