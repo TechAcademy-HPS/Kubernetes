@@ -2,27 +2,48 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    run: nginx
-  name: nginx-deploy
+    app: springboot-app
+  name: springboot-app
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
-      run: nginx
+      app: springboot-app
   template:
     metadata:
       labels:
-        run: nginx
+        app: springboot-app
     spec:
       volumes:
       - name: www
         persistentVolumeClaim:
           claimName: database-persistent-volume-claim
       containers:
-      - name: nginx
+      - name: my-springboot-app
         image: nginx
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
+          name: http
+          protocol: TCP
         volumeMounts:
         - name: www
           mountPath: /usr/share/nginx/html
+# service type loadbalancer       
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: springboot-app
+    k8s-app: springboot-app
+  name: springboot-app
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  type: NodePort
+  selector:
+    app: springboot-app
