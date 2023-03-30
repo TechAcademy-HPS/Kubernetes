@@ -5,7 +5,7 @@ metadata:
     app: springboot-app
   name: springboot-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: springboot-app
@@ -15,20 +15,20 @@ spec:
         app: springboot-app
     spec:
       volumes:
-      - name: www
-        persistentVolumeClaim:
-          claimName: database-persistent-volume-claim
+      - name: hostpathvol
+        hostPath:
+          path: /tmp/
       containers:
       - name: my-springboot-app
-        image: nginx
+        image: yoshithadocker/mydockerrepo:17
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 9090
           name: http
           protocol: TCP
         volumeMounts:
-        - name: www
-          mountPath: /usr/share/nginx/html
+        - name: hostpathvol
+          mountPath: /home/ubuntu/
 # service type loadbalancer       
 ---
 apiVersion: v1
@@ -43,7 +43,7 @@ spec:
   - name: http
     port: 80
     protocol: TCP
-    targetPort: 80
-  type: NodePort
+    targetPort: 9090
+  type: LoadBalancer
   selector:
     app: springboot-app
