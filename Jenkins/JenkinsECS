@@ -9,14 +9,14 @@ pipeline {
 	
     stages {
       	
-      stage('Build'){
+      /*stage('Build'){
              steps{
 		    sh "mvn clean package"
 	              }
         } 
 	   
 	
-	/*stage('Building image') {
+	stage('Building image') {
             steps{
                 script {
 		          
