@@ -53,7 +53,7 @@ pipeline {
                     //def pomversion = readpom.version;
                     withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubeconfig', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
                       //sh "kubectl apply -f  ./test/."
-		    sh "kubectl apply -f  filewithnodeport.yaml"
+		    sh "kubectl apply -f  filewithloadbalancer.yaml"
 		    // sh "kubectl set image deployment/springboot-app my-springboot-app=public.ecr.aws/g7r5s0z3/expressappcontainer:${pomversion}"
                            }
              }
