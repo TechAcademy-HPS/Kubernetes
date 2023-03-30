@@ -52,7 +52,7 @@ pipeline {
 	            //readpom = readMavenPom file: 'pom.xml';
                     //def pomversion = readpom.version;
                     withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubeconfig', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
-                    sh "kubectl create -f ./test/presistantvolume.yaml
+                    sh "kubectl apply -f ./test/presistantvolume.yaml
 		    sh "kubectl create -f ./test/database-persistent-volume-claim.yaml
 		    sh "kubectl apply -f  ./test/."
 		   // sh "kubectl apply -f  filewithloadbalancer.yaml"
