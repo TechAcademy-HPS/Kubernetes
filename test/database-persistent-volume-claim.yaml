@@ -3,8 +3,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: database-persistent-volume-claim
 spec:
-  volumeName:my-local-pv
   storageClassName:my-local-storage
+  volumeName:my-local-pv
   accessModes:
     - ReadWriteOnce
   resources:
