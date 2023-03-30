@@ -15,9 +15,9 @@ spec:
         app: springboot-app
     spec:
       volumes:
-      - name: hostpathvol
-        hostPath:
-          path: /tmp/
+      - name: www
+        persistentVolumeClaim:
+          claimName: database-persistent-volume-claim
       containers:
       - name: my-springboot-app
         image: nginx
@@ -27,8 +27,8 @@ spec:
           name: http
           protocol: TCP
         volumeMounts:
-        - name: hostpathvol
-          mountPath: /home/ubuntu/
+        - name: www
+          mountPath: /usr/share/nginx/html
 # service type loadbalancer       
 ---
 apiVersion: v1
