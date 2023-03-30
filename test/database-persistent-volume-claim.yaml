@@ -4,9 +4,11 @@ metadata:
   name: database-persistent-volume-claim
 spec:
   storageClassName:my-local-storage
-  volumeName:my-local-pv
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 2Gi
+  selector:
+    matchLabels:
+      pv: my-local-pv
