@@ -24,10 +24,7 @@ spec:
             - name: POSTGRES_DB
               value: hello_flask_db
             - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: pgpassword
-                  key: PGPASSWORD
+              value: psltest
 
           volumeMounts:
               name: postgredb
