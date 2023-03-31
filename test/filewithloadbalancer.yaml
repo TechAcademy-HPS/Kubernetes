@@ -20,15 +20,21 @@ spec:
           claimName: database-persistent-volume-claim
       containers:
       - name: my-springboot-app
-        image: nginx
+        image: postgres
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 5432
           name: http
           protocol: TCP
         volumeMounts:
         - name: www
-          mountPath: /usr/share/nginx/html
+          mountPath: /var/lib/postgresql/data
+		env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pgpassword
+                  key: PGPASSWORD
 # service type loadbalancer       
 ---
 apiVersion: v1
