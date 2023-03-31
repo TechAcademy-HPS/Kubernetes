@@ -56,7 +56,7 @@ pipeline {
 		    sh "kubectl apply -f ./test/presistantvolume.yaml"
 		    sh "kubectl apply -f ./test/database-persistent-volume-claim.yaml"
 		    sh "kubectl apply -f  ./test/filewithloadbalancer.yaml"*/
-		    sh "kubectl apply -f  ./test/kubernetes/postgres-pvc-pv.yaml"
+		    sh "kubectl apply -f  ./kubernetes/postgres-pvc-pv.yaml"
 		   // sh "kubectl apply -f  filewithloadbalancer.yaml"
 		    // sh "kubectl set image deployment/springboot-app my-springboot-app=public.ecr.aws/g7r5s0z3/expressappcontainer:${pomversion}"
                            }
