@@ -29,7 +29,6 @@ spec:
               value: hello_flask_db
             - name: POSTGRES_PASSWORD
               value: psltest
-
           volumeMounts:
               name: postgredb
             - mountPath: /var/lib/postgresql/data
