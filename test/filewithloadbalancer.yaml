@@ -29,26 +29,3 @@ spec:
         volumeMounts:
         - name: www
           mountPath: /var/lib/postgresql/data
-		env:
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: pgpassword
-                  key: PGPASSWORD
-# service type loadbalancer       
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: springboot-app
-    k8s-app: springboot-app
-  name: springboot-app
-spec:
-  ports:
-  - name: http
-    port: 80
-    protocol: TCP
-  type: LoadBalancer
-  selector:
-    app: springboot-app
