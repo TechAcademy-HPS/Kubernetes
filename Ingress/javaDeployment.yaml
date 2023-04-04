@@ -14,21 +14,14 @@ spec:
       labels:
         app: springboot-app
     spec:
-      volumes:
-      - name: hostpathvol
-        hostPath:
-          path: /tmp/
       containers:
       - name: my-springboot-app
-        image: nginx
+        image: yoshithadocker/mydockerrepo:17
         imagePullPolicy: Always
         ports:
         - containerPort: 9090
           name: http
           protocol: TCP
-        volumeMounts:
-        - name: hostpathvol
-          mountPath: /home/ubuntu/
 # service type loadbalancer       
 ---
 apiVersion: v1
