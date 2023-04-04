@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: springboot-app
+  name: springboot-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot-app
+  template:
+    metadata:
+      labels:
+        app: springboot-app
+    spec:
+      volumes:
+      - name: hostpathvol
+        hostPath:
+          path: /tmp/
+      containers:
+      - name: my-springboot-app
+        image: nginx
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9090
+          name: http
+          protocol: TCP
+        volumeMounts:
+        - name: hostpathvol
+          mountPath: /home/ubuntu/
+# service type loadbalancer       
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: springboot-app
+    k8s-app: springboot-app
+  name: springboot-app
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  type: LoadBalancer
+  selector:
+    app: springboot-app
